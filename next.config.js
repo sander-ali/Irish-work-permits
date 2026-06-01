@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: { serverComponentsExternalPackages: ['xlsx', 'cheerio'] },
-}
-module.exports = {
+  experimental: {
+    webpackBuildWorker: true,  // enables build worker
+  },
+  serverExternalPackages: ['xlsx', 'cheerio'],
   webpack: (config) => {
     config.externals = [...config.externals, 'xlsx'];
     return config;
   },
 }
+
+module.exports = nextConfig
