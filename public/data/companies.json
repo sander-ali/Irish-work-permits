@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "name": "Google Ireland",
+    "industry": "Technology",
+    "totalPermits": 245,
+    "currentYearPermits": 32,
+    "trend": "increasing",
+    "firstYear": 2018,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Apple Distribution",
+    "industry": "Technology",
+    "totalPermits": 198,
+    "currentYearPermits": 28,
+    "trend": "stable",
+    "firstYear": 2019,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Microsoft Ireland",
+    "industry": "Technology",
+    "totalPermits": 176,
+    "currentYearPermits": 24,
+    "trend": "increasing",
+    "firstYear": 2017,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Amazon Data Services",
+    "industry": "E-commerce",
+    "totalPermits": 154,
+    "currentYearPermits": 21,
+    "trend": "decreasing",
+    "firstYear": 2018,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Deloitte",
+    "industry": "Consulting",
+    "totalPermits": 132,
+    "currentYearPermits": 18,
+    "trend": "stable",
+    "firstYear": 2016,
+    "lastActiveYear": 2026
+  }
+]
