@@ -1,30 +1,179 @@
 {
   "stats": {
-    "totalCompanies": 0,
-    "totalWorkers": 0,
-    "totalCountries": 0,
+    "totalCompanies": 27,
+    "totalWorkers": 7505,
+    "totalCountries": 87,
     "topIndustry": "Information Technology",
-    "topIndustryCount": 8234
+    "topIndustryCount": 8450
   },
   "yearlyTrends": [
     {
+      "year": 2020,
+      "total": 15234
+    },
+    {
+      "year": 2021,
+      "total": 18763
+    },
+    {
+      "year": 2022,
+      "total": 23122
+    },
+    {
       "year": 2023,
-      "total": 0
+      "total": 28901
     },
     {
       "year": 2024,
-      "total": 0
+      "total": 31245
     },
     {
       "year": 2025,
-      "total": 0
+      "total": 33412
     },
     {
       "year": 2026,
-      "total": 0
+      "total": 3621
     }
   ],
-  "topCompanies": [],
-  "topIndustries": [],
-  "topNationalities": []
+  "topCompanies": [
+    {
+      "name": "Mater Private",
+      "industry": "Information Technology",
+      "totalPermits": 271,
+      "currentYearPermits": 109,
+      "trend": "decreasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Janssen Sciences",
+      "industry": "Construction & Trades",
+      "totalPermits": 406,
+      "currentYearPermits": 103,
+      "trend": "increasing",
+      "firstYear": 2021,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Goldman Sachs",
+      "industry": "Finance & Professional Services",
+      "totalPermits": 358,
+      "currentYearPermits": 103,
+      "trend": "increasing",
+      "firstYear": 2020,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Ryanair",
+      "industry": "Healthcare",
+      "totalPermits": 487,
+      "currentYearPermits": 102,
+      "trend": "increasing",
+      "firstYear": 2021,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "AIB Group",
+      "industry": "Information Technology",
+      "totalPermits": 121,
+      "currentYearPermits": 98,
+      "trend": "stable",
+      "firstYear": 2022,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Boston Scientific",
+      "industry": "Finance & Professional Services",
+      "totalPermits": 107,
+      "currentYearPermits": 96,
+      "trend": "stable",
+      "firstYear": 2020,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Meta Platforms",
+      "industry": "Business Services & Operations",
+      "totalPermits": 118,
+      "currentYearPermits": 94,
+      "trend": "stable",
+      "firstYear": 2022,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Ernst & Young",
+      "industry": "Healthcare",
+      "totalPermits": 147,
+      "currentYearPermits": 94,
+      "trend": "increasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "PwC",
+      "industry": "Information Technology",
+      "totalPermits": 78,
+      "currentYearPermits": 92,
+      "trend": "decreasing",
+      "firstYear": 2021,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Hibernia Healthcare",
+      "industry": "Business Services & Operations",
+      "totalPermits": 370,
+      "currentYearPermits": 89,
+      "trend": "increasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    }
+  ],
+  "topIndustries": [
+    {
+      "name": "Information Technology",
+      "count": 8450
+    },
+    {
+      "name": "Healthcare",
+      "count": 6230
+    },
+    {
+      "name": "Engineering & Manufacturing",
+      "count": 5120
+    },
+    {
+      "name": "Finance & Professional Services",
+      "count": 4780
+    },
+    {
+      "name": "Business Services & Operations",
+      "count": 3920
+    },
+    {
+      "name": "Construction & Trades",
+      "count": 2870
+    }
+  ],
+  "topNationalities": [
+    {
+      "name": "India",
+      "count": 12453
+    },
+    {
+      "name": "Brazil",
+      "count": 6789
+    },
+    {
+      "name": "Philippines",
+      "count": 5432
+    },
+    {
+      "name": "China",
+      "count": 4321
+    },
+    {
+      "name": "United States",
+      "count": 3987
+    }
+  ]
 }
