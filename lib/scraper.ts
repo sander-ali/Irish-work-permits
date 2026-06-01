@@ -3,21 +3,41 @@ import * as cheerio from 'cheerio';
 import * as XLSX from 'xlsx';
 import fs from 'fs';
 import path from 'path';
-import { DashboardData, Company, PermitStats } from '@/types';
 
-// Use a writable cache directory (Vercel allows writes to /tmp during runtime)
-const CACHE_DIR = process.env.VERCEL
-  ? '/tmp/irish-permits-cache'
-  : path.join(process.cwd(), '.cache');
-
-const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build';
-
-// Ensure cache directory exists only if we're not in build phase
-if (!isBuildPhase && !fs.existsSync(CACHE_DIR)) {
-  fs.mkdirSync(CACHE_DIR, { recursive: true });
+// Types
+export interface Company {
+  name: string;
+  industry: string;
+  totalPermits: number;
+  currentYearPermits: number;
+  trend: 'increasing' | 'decreasing' | 'stable';
+  firstYear: number;
+  lastActiveYear: number;
 }
 
-// DETE data sources
+export interface PermitStats {
+  year: number;
+  total: number;
+  byNationality: Record<string, number>;
+  byCounty: Record<string, number>;
+  byIndustry: Record<string, number>;
+  companies: number;
+}
+
+export interface DashboardData {
+  stats: {
+    totalCompanies: number;
+    totalWorkers: number;
+    totalCountries: number;
+    topIndustry: string;
+    topIndustryCount: number;
+  };
+  yearlyTrends: PermitStats[];
+  topCompanies: Company[];
+  topIndustries: { name: string; count: number }[];
+  topNationalities: { name: string; count: number }[];
+}
+
 const DATA_SOURCES = [
   'https://enterprise.gov.ie/en/publications/employment-permit-statistics-2026.html',
   'https://enterprise.gov.ie/en/publications/employment-permit-statistics-2025.html',
@@ -48,27 +68,11 @@ async function findExcelLinks(url: string): Promise<string[]> {
 }
 
 async function downloadExcel(url: string): Promise<any[]> {
-  const cachePath = path.join(CACHE_DIR, `${Buffer.from(url).toString('base64')}.json`);
-
-  // Check cache (valid for 1 day) – only if not in build phase
-  if (!isBuildPhase && fs.existsSync(cachePath)) {
-    const stats = fs.statSync(cachePath);
-    const age = (Date.now() - stats.mtimeMs) / (1000 * 60 * 60 * 24);
-    if (age < 1) {
-      return JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
-    }
-  }
-
   try {
     const response = await axios.get(url, { responseType: 'arraybuffer', timeout: 30000 });
     const workbook = XLSX.read(response.data);
     const sheetName = workbook.SheetNames[0];
-    const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
-
-    if (!isBuildPhase) {
-      fs.writeFileSync(cachePath, JSON.stringify(data));
-    }
-    return data;
+    return XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
   } catch (error) {
     console.error(`Failed to download ${url}:`, error);
     return [];
@@ -153,7 +157,6 @@ function parsePermitStats(data: any[], year: number): PermitStats {
   return stats;
 }
 
-// Main scraper function – used at build time and via cron
 export async function scrapePermitData(): Promise<DashboardData> {
   console.log('🔄 Starting data scrape from DETE sources...');
 
@@ -178,7 +181,6 @@ export async function scrapePermitData(): Promise<DashboardData> {
       if (yearlyStatsMap.has(year)) {
         const existing = yearlyStatsMap.get(year)!;
         existing.total += stats.total;
-        // Merge objects (simple addition, not perfect but good enough for demo)
         Object.entries(stats.byNationality).forEach(([k, v]) => {
           existing.byNationality[k] = (existing.byNationality[k] || 0) + v;
         });
@@ -192,7 +194,7 @@ export async function scrapePermitData(): Promise<DashboardData> {
     }
   }
 
-  // Merge duplicate companies (across years)
+  // Merge duplicate companies
   const companyMap = new Map<string, Company>();
   for (const company of allCompanies) {
     const key = company.name.toLowerCase();
@@ -209,29 +211,18 @@ export async function scrapePermitData(): Promise<DashboardData> {
 
   const uniqueCompanies = Array.from(companyMap.values());
 
-  // Compute trend (simple: compare this year to last year for each company)
+  // Compute trends
   const currentYear = new Date().getFullYear();
-  const prevYear = currentYear - 1;
-  const currentYearStats = yearlyStatsMap.get(currentYear);
-  const prevYearStats = yearlyStatsMap.get(prevYear);
-
-  if (currentYearStats && prevYearStats) {
-    for (const company of uniqueCompanies) {
-      // For simplicity, we approximate trend by comparing the company’s total permits
-      // In a real implementation you'd need yearly breakdown per company
-      // Here we use a proxy: if currentYearPermits > totalPermits/ (years active) => increasing
-      const yearsActive = company.lastActiveYear - company.firstYear + 1;
-      const avgPermits = company.totalPermits / yearsActive;
-      if (company.currentYearPermits > avgPermits * 1.1) company.trend = 'increasing';
-      else if (company.currentYearPermits < avgPermits * 0.9) company.trend = 'decreasing';
-      else company.trend = 'stable';
-    }
-  } else {
-    uniqueCompanies.forEach(c => c.trend = 'stable');
+  for (const company of uniqueCompanies) {
+    const yearsActive = company.lastActiveYear - company.firstYear + 1;
+    const avgPermits = company.totalPermits / yearsActive;
+    if (company.currentYearPermits > avgPermits * 1.1) company.trend = 'increasing';
+    else if (company.currentYearPermits < avgPermits * 0.9) company.trend = 'decreasing';
+    else company.trend = 'stable';
   }
 
-  // Prepare dashboard data
   const yearlyTrends = Array.from(yearlyStatsMap.values()).sort((a, b) => a.year - b.year);
+  const currentYearStats = yearlyStatsMap.get(currentYear);
 
   const dashboardData: DashboardData = {
     stats: {
@@ -246,9 +237,7 @@ export async function scrapePermitData(): Promise<DashboardData> {
         : 0,
     },
     yearlyTrends,
-    topCompanies: uniqueCompanies
-      .sort((a, b) => b.currentYearPermits - a.currentYearPermits)
-      .slice(0, 10),
+    topCompanies: uniqueCompanies.sort((a, b) => b.currentYearPermits - a.currentYearPermits).slice(0, 10),
     topIndustries: currentYearStats
       ? Object.entries(currentYearStats.byIndustry)
           .sort((a, b) => b[1] - a[1])
@@ -263,35 +252,21 @@ export async function scrapePermitData(): Promise<DashboardData> {
       : [],
   };
 
-  // Write to disk only if not in build phase
-  if (!isBuildPhase) {
-    const dashboardPath = path.join(CACHE_DIR, 'dashboard.json');
-    const companiesPath = path.join(CACHE_DIR, 'companies.json');
-    fs.writeFileSync(dashboardPath, JSON.stringify(dashboardData));
-    fs.writeFileSync(companiesPath, JSON.stringify(uniqueCompanies));
-    console.log('✅ Data saved to cache');
-  }
+  // Write static JSON files to public/data/
+  const dataDir = path.join(process.cwd(), 'public', 'data');
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
-  console.log('✅ Data scrape complete');
+  const dashboardPath = path.join(dataDir, 'dashboard.json');
+  const companiesPath = path.join(dataDir, 'companies.json');
+
+  fs.writeFileSync(dashboardPath, JSON.stringify(dashboardData, null, 2));
+  fs.writeFileSync(companiesPath, JSON.stringify(uniqueCompanies, null, 2));
+
+  console.log(`✅ Data saved to public/data/ (${uniqueCompanies.length} companies)`);
   return dashboardData;
 }
 
-// For API routes to read cached data
-export async function getCachedData(): Promise<{ dashboard: DashboardData | null; companies: Company[] | null }> {
-  if (isBuildPhase) {
-    return { dashboard: null, companies: null };
-  }
-
-  try {
-    const dashboardPath = path.join(CACHE_DIR, 'dashboard.json');
-    const companiesPath = path.join(CACHE_DIR, 'companies.json');
-    if (fs.existsSync(dashboardPath) && fs.existsSync(companiesPath)) {
-      const dashboard = JSON.parse(fs.readFileSync(dashboardPath, 'utf-8'));
-      const companies = JSON.parse(fs.readFileSync(companiesPath, 'utf-8'));
-      return { dashboard, companies };
-    }
-  } catch (error) {
-    console.error('Failed to read cache:', error);
-  }
-  return { dashboard: null, companies: null };
+// If run directly (node scraper.ts), execute the scrape
+if (require.main === module) {
+  scrapePermitData().catch(console.error);
 }
