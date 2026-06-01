@@ -1,54 +1,57 @@
 import { NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
 
 export async function GET(request: Request) {
-  // Dynamically import scraper only when needed (avoids build-time execution)
-  const { getCachedData, scrapePermitData } = await import('@/lib/scraper');
-  
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') || 'dashboard';
   const query = searchParams.get('query') || '';
   const industry = searchParams.get('industry') || '';
 
   try {
-    let { dashboard, companies } = await getCachedData();
+    const dashboardPath = path.join(process.cwd(), 'public', 'data', 'dashboard.json');
+    const companiesPath = path.join(process.cwd(), 'public', 'data', 'companies.json');
 
-    if (!dashboard || !companies) {
-      // Only scrape if not in build phase and on server
-      if (process.env.NEXT_PHASE !== 'phase-production-build') {
-        await scrapePermitData();
-        const fresh = await getCachedData();
-        dashboard = fresh.dashboard;
-        companies = fresh.companies;
-      } else {
-        return NextResponse.json({ error: 'Data not available during build' }, { status: 503 });
-      }
+    // Check if files exist
+    if (!fs.existsSync(dashboardPath) || !fs.existsSync(companiesPath)) {
+      return NextResponse.json(
+        { error: 'Data not found. Please run `npm run scrape` locally and commit the public/data/ folder.' },
+        { status: 503 }
+      );
     }
 
-    // ... rest of the logic (same as before)
+    const dashboard = JSON.parse(fs.readFileSync(dashboardPath, 'utf-8'));
+    let companies = JSON.parse(fs.readFileSync(companiesPath, 'utf-8'));
+
     if (type === 'dashboard') {
       return NextResponse.json(dashboard);
     }
 
     if (type === 'companies') {
-      let filtered = companies || [];
+      // Apply search filter
       if (query) {
         const q = query.toLowerCase();
-        filtered = filtered.filter(c =>
+        companies = companies.filter((c: any) =>
           c.name.toLowerCase().includes(q) || c.industry.toLowerCase().includes(q)
         );
       }
+
+      // Apply industry filter
       if (industry) {
-        filtered = filtered.filter(c => c.industry.toLowerCase() === industry.toLowerCase());
+        companies = companies.filter((c: any) => c.industry.toLowerCase() === industry.toLowerCase());
       }
+
+      // Pagination
       const page = parseInt(searchParams.get('page') || '1');
       const limit = 50;
       const start = (page - 1) * limit;
-      const paginated = filtered.slice(start, start + limit);
+      const paginated = companies.slice(start, start + limit);
+
       return NextResponse.json({
         companies: paginated,
-        total: filtered.length,
+        total: companies.length,
         page,
-        totalPages: Math.ceil(filtered.length / limit),
+        totalPages: Math.ceil(companies.length / limit),
       });
     }
 
