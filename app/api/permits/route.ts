@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
-import { getCachedData, scrapePermitData } from '@/lib/scraper';
 
 export async function GET(request: Request) {
+  // Dynamically import scraper only when needed (avoids build-time execution)
+  const { getCachedData, scrapePermitData } = await import('@/lib/scraper');
+  
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') || 'dashboard';
   const query = searchParams.get('query') || '';
@@ -10,21 +12,19 @@ export async function GET(request: Request) {
   try {
     let { dashboard, companies } = await getCachedData();
 
-    // If no cache, trigger scrape (but not during build)
     if (!dashboard || !companies) {
+      // Only scrape if not in build phase and on server
       if (process.env.NEXT_PHASE !== 'phase-production-build') {
-        const fresh = await scrapePermitData();
-        dashboard = fresh;
-        companies = fresh.topCompanies; // Actually companies list is inside fresh, but we need full list.
-        // Better: we saved companies.json separately; after scrape, re-read.
-        const refreshed = await getCachedData();
-        dashboard = refreshed.dashboard;
-        companies = refreshed.companies;
+        await scrapePermitData();
+        const fresh = await getCachedData();
+        dashboard = fresh.dashboard;
+        companies = fresh.companies;
       } else {
-        return NextResponse.json({ error: 'Data not ready' }, { status: 503 });
+        return NextResponse.json({ error: 'Data not available during build' }, { status: 503 });
       }
     }
 
+    // ... rest of the logic (same as before)
     if (type === 'dashboard') {
       return NextResponse.json(dashboard);
     }
@@ -40,12 +40,10 @@ export async function GET(request: Request) {
       if (industry) {
         filtered = filtered.filter(c => c.industry.toLowerCase() === industry.toLowerCase());
       }
-
       const page = parseInt(searchParams.get('page') || '1');
       const limit = 50;
       const start = (page - 1) * limit;
       const paginated = filtered.slice(start, start + limit);
-
       return NextResponse.json({
         companies: paginated,
         total: filtered.length,
