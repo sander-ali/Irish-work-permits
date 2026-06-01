@@ -30,7 +30,6 @@ export interface DashboardData {
 const DATA_ROOT = path.join(process.cwd(), 'data');
 const OUTPUT_DIR = path.join(process.cwd(), 'public', 'data');
 
-// Helper: normalize industry names
 function normalizeIndustry(industry: string): string {
   const mapping: Record<string, string> = {
     'ICT': 'Information Technology',
@@ -47,7 +46,6 @@ function normalizeIndustry(industry: string): string {
   return mapping[industry] || industry || 'Other';
 }
 
-// Read all Excel files from a given directory
 function readExcelFilesFromDir(dirPath: string): any[] {
   if (!fs.existsSync(dirPath)) return [];
   const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.xlsx') || f.endsWith('.xls'));
@@ -65,7 +63,6 @@ function readExcelFilesFromDir(dirPath: string): any[] {
   return allRows;
 }
 
-// Generate fallback sample data when no real data is found
 function generateSampleData(): DashboardData {
   const companies: Company[] = [];
   const industries = ['Information Technology', 'Healthcare', 'Engineering & Manufacturing', 'Finance & Professional Services', 'Business Services & Operations', 'Construction & Trades'];
@@ -102,7 +99,6 @@ export async function scrapePermitData(): Promise<DashboardData> {
     fs.mkdirSync(DATA_ROOT, { recursive: true });
   }
 
-  // Get all subdirectories that look like years (e.g., "2026", "2025")
   const yearDirs = fs.readdirSync(DATA_ROOT).filter(item => {
     const fullPath = path.join(DATA_ROOT, item);
     return fs.statSync(fullPath).isDirectory() && /^\d{4}$/.test(item);
@@ -117,7 +113,6 @@ export async function scrapePermitData(): Promise<DashboardData> {
     return sample;
   }
 
-  // Data structures
   const companyMap = new Map<string, {
     name: string;
     industry: string;
@@ -145,77 +140,62 @@ export async function scrapePermitData(): Promise<DashboardData> {
     if (!yearlyCounties[year]) yearlyCounties[year] = {};
 
     for (const row of rows) {
-      // Determine what type of data this row contains by checking column names
-      const isCompanyRow = !!(row['Company Name'] || row['Employer'] || row['Company'] || row['Company name'] || row['employer_name']);
-      const isNationalityRow = !!(row['Nationality'] || row['Country'] || row['Citizenship']);
-      const isCountyRow = !!(row['County'] || row['Location'] || row['Region']);
-      const isSectorRow = !!(row['Sector'] || row['Industry'] || row['Sector Name']);
-
-      // Extract permit count (common to all row types)
-      let permitsRaw = row['Permits'] || row['Count'] || row['Number of Permits'] || row['permit_count'] || '0';
+      // ---- Extract permit count ----
+      let permitsRaw = row['Permits'] || row['Count'] || row['Number of Permits'] || '0';
       let permits = 0;
       if (typeof permitsRaw === 'string') permits = parseInt(permitsRaw.replace(/,/g, ''), 10);
       else if (typeof permitsRaw === 'number') permits = permitsRaw;
       else permits = parseInt(permitsRaw, 10);
       if (isNaN(permits) || permits === 0) continue;
 
-      // Update yearly total (all rows contribute)
       yearlyTotals[year] = (yearlyTotals[year] || 0) + permits;
 
-      // Handle company data
-      if (isCompanyRow) {
-        const name = row['Company Name'] || row['Employer'] || row['Company'] || row['Company name'] || row['employer_name'];
-        if (name) {
-          const industryRaw = row['Sector'] || row['Industry'] || row['Sector Name'] || 'Other';
-          const industry = normalizeIndustry(industryRaw);
-          const key = name.toString().trim().toLowerCase();
+      // ---- Company name (primary: "Employer Name", fallbacks) ----
+      const employerName = row['Employer Name'] || row['Employer'] || row['Company Name'] || row['Company'] || row['employer_name'];
+      if (employerName) {
+        const industryRaw = row['Sector'] || row['Industry'] || row['Sector Name'] || 'Other';
+        const industry = normalizeIndustry(industryRaw);
+        const key = employerName.toString().trim().toLowerCase();
 
-          if (companyMap.has(key)) {
-            const existing = companyMap.get(key)!;
-            existing.totalPermits += permits;
-            existing.yearlyPermits[year] = (existing.yearlyPermits[year] || 0) + permits;
-            existing.lastYear = Math.max(existing.lastYear, year);
-            existing.firstYear = Math.min(existing.firstYear, year);
-            if (!existing.industry && industry) existing.industry = industry;
-          } else {
-            companyMap.set(key, {
-              name: name.toString().trim(),
-              industry: industry,
-              totalPermits: permits,
-              yearlyPermits: { [year]: permits },
-              firstYear: year,
-              lastYear: year
-            });
-          }
-
-          // Also update industry stats for this year
-          yearlyIndustries[year][industry] = (yearlyIndustries[year][industry] || 0) + permits;
+        if (companyMap.has(key)) {
+          const existing = companyMap.get(key)!;
+          existing.totalPermits += permits;
+          existing.yearlyPermits[year] = (existing.yearlyPermits[year] || 0) + permits;
+          existing.lastYear = Math.max(existing.lastYear, year);
+          existing.firstYear = Math.min(existing.firstYear, year);
+          if (!existing.industry && industry) existing.industry = industry;
+        } else {
+          companyMap.set(key, {
+            name: employerName.toString().trim(),
+            industry: industry,
+            totalPermits: permits,
+            yearlyPermits: { [year]: permits },
+            firstYear: year,
+            lastYear: year
+          });
         }
+
+        // Also update industry stats
+        yearlyIndustries[year][industry] = (yearlyIndustries[year][industry] || 0) + permits;
       }
 
-      // Handle nationality data
-      if (isNationalityRow) {
-        const nationality = row['Nationality'] || row['Country'] || row['Citizenship'];
-        if (nationality) {
-          yearlyNationalities[year][nationality] = (yearlyNationalities[year][nationality] || 0) + permits;
-        }
+      // ---- Nationality ----
+      const nationality = row['Nationality'] || row['Country'] || row['Citizenship'];
+      if (nationality) {
+        yearlyNationalities[year][nationality] = (yearlyNationalities[year][nationality] || 0) + permits;
       }
 
-      // Handle county data
-      if (isCountyRow) {
-        const county = row['County'] || row['Location'] || row['Region'];
-        if (county) {
-          yearlyCounties[year][county] = (yearlyCounties[year][county] || 0) + permits;
-        }
+      // ---- County ----
+      const county = row['County'] || row['Location'] || row['Region'];
+      if (county) {
+        yearlyCounties[year][county] = (yearlyCounties[year][county] || 0) + permits;
       }
 
-      // If row is only sector (no company), still update industry stats
-      if (!isCompanyRow && isSectorRow) {
-        const industryRaw = row['Sector'] || row['Industry'] || row['Sector Name'];
-        if (industryRaw) {
-          const industry = normalizeIndustry(industryRaw);
-          yearlyIndustries[year][industry] = (yearlyIndustries[year][industry] || 0) + permits;
-        }
+      // ---- If no employer but sector exists, still count industry ----
+      if (!employerName && (row['Sector'] || row['Industry'])) {
+        const industryRaw = row['Sector'] || row['Industry'] || 'Other';
+        const industry = normalizeIndustry(industryRaw);
+        yearlyIndustries[year][industry] = (yearlyIndustries[year][industry] || 0) + permits;
       }
     }
   }
@@ -229,7 +209,6 @@ export async function scrapePermitData(): Promise<DashboardData> {
     return sample;
   }
 
-  // Build companies array with trends
   const currentYear = 2026;
   const companies: Company[] = [];
   for (const item of companyMap.values()) {
@@ -298,7 +277,6 @@ export async function scrapePermitData(): Promise<DashboardData> {
     topNationalities
   };
 
-  // Write output JSON files
   if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   fs.writeFileSync(path.join(OUTPUT_DIR, 'dashboard.json'), JSON.stringify(dashboardData, null, 2));
   fs.writeFileSync(path.join(OUTPUT_DIR, 'companies.json'), JSON.stringify(companies, null, 2));
