@@ -1,3 +1,5 @@
+"use client";
+
 import { Suspense } from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -20,7 +22,6 @@ interface CompaniesResponse {
   totalPages: number;
 }
 
-// Client component that uses useSearchParams
 function CompaniesClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
