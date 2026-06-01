@@ -1,0 +1,46 @@
+{
+  "stats": {
+    "totalCompanies": 0,
+    "totalWorkers": 0,
+    "totalCountries": 0,
+    "topIndustry": "N/A",
+    "topIndustryCount": 0
+  },
+  "yearlyTrends": [
+    {
+      "year": 2023,
+      "total": 0,
+      "byNationality": {},
+      "byCounty": {},
+      "byIndustry": {},
+      "companies": 0
+    },
+    {
+      "year": 2024,
+      "total": 0,
+      "byNationality": {},
+      "byCounty": {},
+      "byIndustry": {},
+      "companies": 0
+    },
+    {
+      "year": 2025,
+      "total": 0,
+      "byNationality": {},
+      "byCounty": {},
+      "byIndustry": {},
+      "companies": 0
+    },
+    {
+      "year": 2026,
+      "total": 0,
+      "byNationality": {},
+      "byCounty": {},
+      "byIndustry": {},
+      "companies": 0
+    }
+  ],
+  "topCompanies": [],
+  "topIndustries": [],
+  "topNationalities": []
+}
