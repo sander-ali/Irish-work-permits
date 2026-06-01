@@ -52,7 +52,6 @@ async function findExcelLinks(url: string): Promise<string[]> {
       }
     });
     console.log(`   Found ${links.length} Excel links: ${links.join(', ')}`);
-    // If no links found, log a snippet of the HTML for debugging
     if (links.length === 0) {
       console.log('   HTML snippet:', $('body').text().substring(0, 500));
     }
@@ -69,7 +68,7 @@ async function downloadExcel(url: string): Promise<any[]> {
     const response = await axios.get(url, { responseType: 'arraybuffer', timeout: 30000 });
     const workbook = XLSX.read(response.data);
     const sheetName = workbook.SheetNames[0];
-    const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+    const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]) as any[];
     console.log(`   📊 Downloaded ${rows.length} rows from ${sheetName}`);
     if (rows.length > 0) {
       console.log(`   Sample columns: ${Object.keys(rows[0]).join(', ')}`);
@@ -97,7 +96,6 @@ function normalizeIndustry(industry: string): string {
   return mapping[industry] || industry || 'Other';
 }
 
-// Generate extensive realistic sample data when real scrape fails
 function generateSampleData(): DashboardData {
   const companies: Company[] = [];
   const industries = ['Information Technology', 'Healthcare', 'Engineering & Manufacturing', 'Finance & Professional Services', 'Business Services & Operations', 'Construction & Trades'];
@@ -197,10 +195,9 @@ export async function scrapePermitData(): Promise<DashboardData> {
       if (!yearlyNationalities[year]) yearlyNationalities[year] = {};
 
       for (const row of rows) {
-        // Try multiple possible column names
         const name = row['Company Name'] || row['Employer'] || row['Company'] || row['Company name'] || row['employer_name'];
         const industryRaw = row['Sector'] || row['Industry'] || row['Sector Name'] || row['industry_sector'] || 'Other';
-        const permitsRaw = row['Permits'] || row['Count'] || row['Number of Permits'] || row['permit_count'] || '0';
+        let permitsRaw = row['Permits'] || row['Count'] || row['Number of Permits'] || row['permit_count'] || '0';
         const nationality = row['Nationality'] || row['Country'] || row['Citizenship'];
 
         let permits = 0;
@@ -213,14 +210,12 @@ export async function scrapePermitData(): Promise<DashboardData> {
 
         const industry = normalizeIndustry(industryRaw);
         
-        // Update yearly aggregates
         yearlyTotals[year] = (yearlyTotals[year] || 0) + permits;
         yearlyIndustries[year][industry] = (yearlyIndustries[year][industry] || 0) + permits;
         if (nationality) {
           yearlyNationalities[year][nationality] = (yearlyNationalities[year][nationality] || 0) + permits;
         }
 
-        // Update company
         const key = name.toString().trim().toLowerCase();
         if (companyMap.has(key)) {
           const existing = companyMap.get(key)!;
@@ -243,7 +238,6 @@ export async function scrapePermitData(): Promise<DashboardData> {
     }
   }
 
-  // If no real data, use sample
   if (!anyDataFound || companyMap.size === 0) {
     console.warn('⚠️ No real data scraped. Using sample data.');
     const sampleData = generateSampleData();
@@ -255,7 +249,6 @@ export async function scrapePermitData(): Promise<DashboardData> {
     return sampleData;
   }
 
-  // Build companies array
   const currentYear = 2026;
   const companies: Company[] = [];
   for (const item of companyMap.values()) {
