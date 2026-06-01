@@ -1,0 +1,23 @@
+name: Update permit data
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # runs daily at 03:00 UTC
+  workflow_dispatch:       # allows you to run it manually from GitHub
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write      # needed to commit changes
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run scrape
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update permit data"
+          file_pattern: public/data/*.json
