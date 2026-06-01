@@ -1,6 +1,4 @@
-// app/companies/CompaniesClient.tsx
-'use client';
-
+import { Suspense } from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -22,7 +20,8 @@ interface CompaniesResponse {
   totalPages: number;
 }
 
-export default function CompaniesClient() {
+// Client component that uses useSearchParams
+function CompaniesClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -63,7 +62,7 @@ export default function CompaniesClient() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Company Explorer</h1>
         <p className="text-gray-600 mb-6">Search every sponsor, filter by industry, and explore sponsorship history.</p>
@@ -184,6 +183,19 @@ export default function CompaniesClient() {
           </div>
         )}
       </div>
-    </>
+    </div>
+  );
+}
+
+// Main page component with Suspense boundary
+export default function CompaniesPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <CompaniesClient />
+    </Suspense>
   );
 }
