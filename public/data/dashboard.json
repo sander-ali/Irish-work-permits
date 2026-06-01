@@ -1,134 +1,30 @@
 {
   "stats": {
-    "totalCompanies": 1247,
-    "totalWorkers": 34289,
-    "totalCountries": 87,
+    "totalCompanies": 0,
+    "totalWorkers": 0,
+    "totalCountries": 0,
     "topIndustry": "Information Technology",
     "topIndustryCount": 8234
   },
   "yearlyTrends": [
     {
-      "year": 2020,
-      "total": 15234
-    },
-    {
-      "year": 2021,
-      "total": 18763
-    },
-    {
-      "year": 2022,
-      "total": 23122
-    },
-    {
       "year": 2023,
-      "total": 28901
+      "total": 0
     },
     {
       "year": 2024,
-      "total": 31245
+      "total": 0
     },
     {
       "year": 2025,
-      "total": 33412
+      "total": 0
     },
     {
       "year": 2026,
-      "total": 3621
+      "total": 0
     }
   ],
-  "topCompanies": [
-    {
-      "name": "Google Ireland",
-      "industry": "Technology",
-      "totalPermits": 245,
-      "currentYearPermits": 32,
-      "trend": "increasing",
-      "firstYear": 2018,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Apple Distribution",
-      "industry": "Technology",
-      "totalPermits": 198,
-      "currentYearPermits": 28,
-      "trend": "stable",
-      "firstYear": 2019,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Microsoft Ireland",
-      "industry": "Technology",
-      "totalPermits": 176,
-      "currentYearPermits": 24,
-      "trend": "increasing",
-      "firstYear": 2017,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Amazon Data Services",
-      "industry": "E-commerce",
-      "totalPermits": 154,
-      "currentYearPermits": 21,
-      "trend": "decreasing",
-      "firstYear": 2018,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Deloitte",
-      "industry": "Consulting",
-      "totalPermits": 132,
-      "currentYearPermits": 18,
-      "trend": "stable",
-      "firstYear": 2016,
-      "lastActiveYear": 2026
-    }
-  ],
-  "topIndustries": [
-    {
-      "name": "Information Technology",
-      "count": 8234
-    },
-    {
-      "name": "Healthcare",
-      "count": 5678
-    },
-    {
-      "name": "Engineering",
-      "count": 4321
-    },
-    {
-      "name": "Business Services",
-      "count": 3987
-    },
-    {
-      "name": "Construction",
-      "count": 2876
-    },
-    {
-      "name": "Finance",
-      "count": 2543
-    }
-  ],
-  "topNationalities": [
-    {
-      "name": "India",
-      "count": 12453
-    },
-    {
-      "name": "Brazil",
-      "count": 6789
-    },
-    {
-      "name": "Philippines",
-      "count": 5432
-    },
-    {
-      "name": "China",
-      "count": 4321
-    },
-    {
-      "name": "USA",
-      "count": 3987
-    }
-  ]
+  "topCompanies": [],
+  "topIndustries": [],
+  "topNationalities": []
 }
