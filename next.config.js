@@ -2,4 +2,9 @@
 const nextConfig = {
   experimental: { serverComponentsExternalPackages: ['xlsx', 'cheerio'] },
 }
-module.exports = nextConfig
+module.exports = {
+  webpack: (config) => {
+    config.externals = [...config.externals, 'xlsx'];
+    return config;
+  },
+}
