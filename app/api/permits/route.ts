@@ -1,9 +1,5 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-import { DashboardData } from '@/lib/scraper';
-
-const CACHE_DIR = path.join(process.cwd(), 'public', 'data');
+import { getCachedData, scrapePermitData } from '@/lib/scraper';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -12,55 +8,53 @@ export async function GET(request: Request) {
   const industry = searchParams.get('industry') || '';
 
   try {
-    if (type === 'dashboard') {
-      const dashboardPath = path.join(CACHE_DIR, 'dashboard.json');
-      if (fs.existsSync(dashboardPath)) {
-        const data = JSON.parse(fs.readFileSync(dashboardPath, 'utf-8'));
-        return NextResponse.json(data);
+    let { dashboard, companies } = await getCachedData();
+
+    // If no cache, trigger scrape (but not during build)
+    if (!dashboard || !companies) {
+      if (process.env.NEXT_PHASE !== 'phase-production-build') {
+        const fresh = await scrapePermitData();
+        dashboard = fresh;
+        companies = fresh.topCompanies; // Actually companies list is inside fresh, but we need full list.
+        // Better: we saved companies.json separately; after scrape, re-read.
+        const refreshed = await getCachedData();
+        dashboard = refreshed.dashboard;
+        companies = refreshed.companies;
+      } else {
+        return NextResponse.json({ error: 'Data not ready' }, { status: 503 });
       }
+    }
+
+    if (type === 'dashboard') {
+      return NextResponse.json(dashboard);
     }
 
     if (type === 'companies') {
-      const companiesPath = path.join(CACHE_DIR, 'companies.json');
-      if (fs.existsSync(companiesPath)) {
-        let companies = JSON.parse(fs.readFileSync(companiesPath, 'utf-8'));
-
-        // Apply search filter
-        if (query) {
-          const searchLower = query.toLowerCase();
-          companies = companies.filter((c: any) =>
-            c.name.toLowerCase().includes(searchLower) ||
-            c.industry.toLowerCase().includes(searchLower)
-          );
-        }
-
-        // Apply industry filter
-        if (industry) {
-          companies = companies.filter((c: any) =>
-            c.industry.toLowerCase() === industry.toLowerCase()
-          );
-        }
-
-        // Pagination
-        const page = parseInt(searchParams.get('page') || '1');
-        const limit = 50;
-        const start = (page - 1) * limit;
-        const paginated = companies.slice(start, start + limit);
-
-        return NextResponse.json({
-          companies: paginated,
-          total: companies.length,
-          page,
-          totalPages: Math.ceil(companies.length / limit),
-        });
+      let filtered = companies || [];
+      if (query) {
+        const q = query.toLowerCase();
+        filtered = filtered.filter(c =>
+          c.name.toLowerCase().includes(q) || c.industry.toLowerCase().includes(q)
+        );
       }
+      if (industry) {
+        filtered = filtered.filter(c => c.industry.toLowerCase() === industry.toLowerCase());
+      }
+
+      const page = parseInt(searchParams.get('page') || '1');
+      const limit = 50;
+      const start = (page - 1) * limit;
+      const paginated = filtered.slice(start, start + limit);
+
+      return NextResponse.json({
+        companies: paginated,
+        total: filtered.length,
+        page,
+        totalPages: Math.ceil(filtered.length / limit),
+      });
     }
 
-    // If no cache, trigger scrape and return empty
-    const { scrapePermitData } = await import('@/lib/scraper');
-    await scrapePermitData();
-
-    return NextResponse.json({ message: 'Data refresh initiated', status: 'loading' });
+    return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
   } catch (error) {
     console.error('API Error:', error);
     return NextResponse.json({ error: 'Failed to load data' }, { status: 500 });
