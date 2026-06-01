@@ -1,9 +1,10 @@
+// app/companies/CompaniesClient.tsx
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Search, Filter, ChevronLeft, ChevronRight, Building2 } from 'lucide-react';
+import Link from 'next/link';
+import { Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Company {
   name: string;
@@ -21,7 +22,7 @@ interface CompaniesResponse {
   totalPages: number;
 }
 
-export default function CompaniesPage() {
+export default function CompaniesClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -62,7 +63,7 @@ export default function CompaniesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Company Explorer</h1>
         <p className="text-gray-600 mb-6">Search every sponsor, filter by industry, and explore sponsorship history.</p>
@@ -183,6 +184,6 @@ export default function CompaniesPage() {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }
