@@ -3,7 +3,11 @@ const nextConfig = {
   experimental: {
     webpackBuildWorker: true,
   },
-  serverExternalPackages: ['xlsx', 'cheerio'],
-}
+  serverExternalPackages: ["xlsx", "cheerio"],
+  webpack: (config) => {
+    config.externals = [...config.externals, 'xlsx'];
+    return config;
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
