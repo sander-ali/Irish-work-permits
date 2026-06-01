@@ -2,8 +2,8 @@
 const nextConfig = {
   experimental: {
     webpackBuildWorker: true,
+    serverComponentsExternalPackages: ["xlsx", "cheerio"],
   },
-  serverExternalPackages: ["xlsx", "cheerio"],
   webpack: (config) => {
     config.externals = [...config.externals, 'xlsx'];
     return config;
