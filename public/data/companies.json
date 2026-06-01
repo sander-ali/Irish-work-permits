@@ -1,91 +1,91 @@
 [
   {
-    "name": "Accenture",
+    "name": "Boston Scientific",
     "industry": "Finance & Professional Services",
-    "totalPermits": 70,
-    "currentYearPermits": 103,
+    "totalPermits": 327,
+    "currentYearPermits": 96,
     "trend": "decreasing",
-    "firstYear": 2023,
+    "firstYear": 2020,
     "lastActiveYear": 2026
   },
   {
-    "name": "Irish Life Health",
-    "industry": "Healthcare",
-    "totalPermits": 527,
-    "currentYearPermits": 102,
-    "trend": "stable",
-    "firstYear": 2023,
+    "name": "Google Ireland",
+    "industry": "Information Technology",
+    "totalPermits": 354,
+    "currentYearPermits": 94,
+    "trend": "decreasing",
+    "firstYear": 2020,
     "lastActiveYear": 2026
   },
   {
-    "name": "Janssen Sciences",
-    "industry": "Construction & Trades",
-    "totalPermits": 366,
-    "currentYearPermits": 102,
-    "trend": "stable",
-    "firstYear": 2021,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "St. James Hospital",
-    "industry": "Construction & Trades",
-    "totalPermits": 225,
-    "currentYearPermits": 97,
-    "trend": "increasing",
-    "firstYear": 2022,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Medtronic",
-    "industry": "Business Services & Operations",
-    "totalPermits": 158,
-    "currentYearPermits": 97,
-    "trend": "increasing",
-    "firstYear": 2021,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Citibank Europe",
+    "name": "Intel Ireland",
     "industry": "Engineering & Manufacturing",
-    "totalPermits": 430,
-    "currentYearPermits": 95,
+    "totalPermits": 489,
+    "currentYearPermits": 93,
     "trend": "increasing",
-    "firstYear": 2023,
+    "firstYear": 2021,
     "lastActiveYear": 2026
   },
   {
     "name": "Amazon Data Services",
     "industry": "Finance & Professional Services",
-    "totalPermits": 287,
-    "currentYearPermits": 79,
+    "totalPermits": 379,
+    "currentYearPermits": 91,
     "trend": "decreasing",
-    "firstYear": 2021,
+    "firstYear": 2022,
     "lastActiveYear": 2026
   },
   {
-    "name": "Mater Private",
-    "industry": "Information Technology",
-    "totalPermits": 99,
-    "currentYearPermits": 74,
+    "name": "Janssen Sciences",
+    "industry": "Construction & Trades",
+    "totalPermits": 337,
+    "currentYearPermits": 82,
     "trend": "stable",
-    "firstYear": 2020,
+    "firstYear": 2023,
     "lastActiveYear": 2026
   },
   {
     "name": "CRH plc",
     "industry": "Business Services & Operations",
-    "totalPermits": 102,
-    "currentYearPermits": 70,
-    "trend": "decreasing",
-    "firstYear": 2021,
+    "totalPermits": 257,
+    "currentYearPermits": 82,
+    "trend": "increasing",
+    "firstYear": 2022,
     "lastActiveYear": 2026
   },
   {
-    "name": "AIB Group",
-    "industry": "Information Technology",
-    "totalPermits": 310,
+    "name": "Meta Platforms",
+    "industry": "Business Services & Operations",
+    "totalPermits": 243,
+    "currentYearPermits": 79,
+    "trend": "increasing",
+    "firstYear": 2022,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "St. James Hospital",
+    "industry": "Construction & Trades",
+    "totalPermits": 434,
+    "currentYearPermits": 72,
+    "trend": "increasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Deloitte",
+    "industry": "Construction & Trades",
+    "totalPermits": 308,
     "currentYearPermits": 69,
-    "trend": "decreasing",
+    "trend": "increasing",
+    "firstYear": 2022,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Microsoft Ireland",
+    "industry": "Engineering & Manufacturing",
+    "totalPermits": 428,
+    "currentYearPermits": 61,
+    "trend": "stable",
     "firstYear": 2023,
     "lastActiveYear": 2026
   }
