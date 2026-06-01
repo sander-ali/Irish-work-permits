@@ -1,91 +1,91 @@
 [
   {
-    "name": "Mater Private",
-    "industry": "Information Technology",
-    "totalPermits": 271,
-    "currentYearPermits": 109,
+    "name": "Accenture",
+    "industry": "Finance & Professional Services",
+    "totalPermits": 70,
+    "currentYearPermits": 103,
     "trend": "decreasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Irish Life Health",
+    "industry": "Healthcare",
+    "totalPermits": 527,
+    "currentYearPermits": 102,
+    "trend": "stable",
     "firstYear": 2023,
     "lastActiveYear": 2026
   },
   {
     "name": "Janssen Sciences",
     "industry": "Construction & Trades",
-    "totalPermits": 406,
-    "currentYearPermits": 103,
+    "totalPermits": 366,
+    "currentYearPermits": 102,
+    "trend": "stable",
+    "firstYear": 2021,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "St. James Hospital",
+    "industry": "Construction & Trades",
+    "totalPermits": 225,
+    "currentYearPermits": 97,
+    "trend": "increasing",
+    "firstYear": 2022,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Medtronic",
+    "industry": "Business Services & Operations",
+    "totalPermits": 158,
+    "currentYearPermits": 97,
     "trend": "increasing",
     "firstYear": 2021,
     "lastActiveYear": 2026
   },
   {
-    "name": "Goldman Sachs",
-    "industry": "Finance & Professional Services",
-    "totalPermits": 358,
-    "currentYearPermits": 103,
+    "name": "Citibank Europe",
+    "industry": "Engineering & Manufacturing",
+    "totalPermits": 430,
+    "currentYearPermits": 95,
     "trend": "increasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Amazon Data Services",
+    "industry": "Finance & Professional Services",
+    "totalPermits": 287,
+    "currentYearPermits": 79,
+    "trend": "decreasing",
+    "firstYear": 2021,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Mater Private",
+    "industry": "Information Technology",
+    "totalPermits": 99,
+    "currentYearPermits": 74,
+    "trend": "stable",
     "firstYear": 2020,
     "lastActiveYear": 2026
   },
   {
-    "name": "Ryanair",
-    "industry": "Healthcare",
-    "totalPermits": 487,
-    "currentYearPermits": 102,
-    "trend": "increasing",
+    "name": "CRH plc",
+    "industry": "Business Services & Operations",
+    "totalPermits": 102,
+    "currentYearPermits": 70,
+    "trend": "decreasing",
     "firstYear": 2021,
     "lastActiveYear": 2026
   },
   {
     "name": "AIB Group",
     "industry": "Information Technology",
-    "totalPermits": 121,
-    "currentYearPermits": 98,
-    "trend": "stable",
-    "firstYear": 2022,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Boston Scientific",
-    "industry": "Finance & Professional Services",
-    "totalPermits": 107,
-    "currentYearPermits": 96,
-    "trend": "stable",
-    "firstYear": 2020,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Meta Platforms",
-    "industry": "Business Services & Operations",
-    "totalPermits": 118,
-    "currentYearPermits": 94,
-    "trend": "stable",
-    "firstYear": 2022,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Ernst & Young",
-    "industry": "Healthcare",
-    "totalPermits": 147,
-    "currentYearPermits": 94,
-    "trend": "increasing",
-    "firstYear": 2023,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "PwC",
-    "industry": "Information Technology",
-    "totalPermits": 78,
-    "currentYearPermits": 92,
+    "totalPermits": 310,
+    "currentYearPermits": 69,
     "trend": "decreasing",
-    "firstYear": 2021,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Hibernia Healthcare",
-    "industry": "Business Services & Operations",
-    "totalPermits": 370,
-    "currentYearPermits": 89,
-    "trend": "increasing",
     "firstYear": 2023,
     "lastActiveYear": 2026
   }
