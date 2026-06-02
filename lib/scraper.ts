@@ -46,6 +46,26 @@ function normalizeIndustry(industry: string): string {
   return mapping[industry] || industry || 'Other';
 }
 
+// Sum all columns that start with "Permits Issued" (case‑insensitive)
+function sumMonthlyPermits(row: any): number {
+  let total = 0;
+  for (const key of Object.keys(row)) {
+    if (key.toLowerCase().startsWith('permits issued')) {
+      let val = row[key];
+      if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
+      else if (typeof val !== 'number') val = parseFloat(val);
+      if (!isNaN(val)) total += val;
+    }
+  }
+  // If no monthly columns found, try a column named exactly "Permits Issued Grand Total"
+  if (total === 0 && row['Permits Issued Grand Total']) {
+    let grand = row['Permits Issued Grand Total'];
+    if (typeof grand === 'string') grand = parseFloat(grand.replace(/,/g, ''));
+    if (!isNaN(grand)) total = grand;
+  }
+  return total;
+}
+
 function readExcelFilesFromDir(dirPath: string): any[] {
   if (!fs.existsSync(dirPath)) return [];
   const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.xlsx') || f.endsWith('.xls'));
@@ -140,18 +160,32 @@ export async function scrapePermitData(): Promise<DashboardData> {
     if (!yearlyCounties[year]) yearlyCounties[year] = {};
 
     for (const row of rows) {
-      // ---- Extract permit count ----
-      let permitsRaw = row['Permits'] || row['Count'] || row['Number of Permits'] || '0';
+      // ---- Determine if this row has employer data ----
+      const employerName = row['Employer Name'] || row['Employer'] || row['Company Name'] || row['Company'];
+      
+      // ---- Extract permit count (monthly sum or grand total) ----
       let permits = 0;
-      if (typeof permitsRaw === 'string') permits = parseInt(permitsRaw.replace(/,/g, ''), 10);
-      else if (typeof permitsRaw === 'number') permits = permitsRaw;
-      else permits = parseInt(permitsRaw, 10);
+      if (employerName) {
+        permits = sumMonthlyPermits(row);
+      } else {
+        // For non‑company rows (nationality, county, sector) try simple permit column
+        let simplePermit = row['Permits'] || row['Count'] || row['Number of Permits'];
+        if (simplePermit !== undefined) {
+          if (typeof simplePermit === 'string') permits = parseInt(simplePermit.replace(/,/g, ''), 10);
+          else if (typeof simplePermit === 'number') permits = simplePermit;
+          else permits = parseInt(simplePermit, 10);
+          if (isNaN(permits)) permits = 0;
+        } else {
+          // If no simple permit column, try monthly sum (e.g., for sector file)
+          permits = sumMonthlyPermits(row);
+        }
+      }
       if (isNaN(permits) || permits === 0) continue;
 
+      // Update yearly total (all rows contribute)
       yearlyTotals[year] = (yearlyTotals[year] || 0) + permits;
 
-      // ---- Company name (primary: "Employer Name", fallbacks) ----
-      const employerName = row['Employer Name'] || row['Employer'] || row['Company Name'] || row['Company'] || row['employer_name'];
+      // ---- Company data ----
       if (employerName) {
         const industryRaw = row['Sector'] || row['Industry'] || row['Sector Name'] || 'Other';
         const industry = normalizeIndustry(industryRaw);
@@ -175,23 +209,23 @@ export async function scrapePermitData(): Promise<DashboardData> {
           });
         }
 
-        // Also update industry stats
+        // Update industry stats
         yearlyIndustries[year][industry] = (yearlyIndustries[year][industry] || 0) + permits;
       }
 
-      // ---- Nationality ----
+      // ---- Nationality data ----
       const nationality = row['Nationality'] || row['Country'] || row['Citizenship'];
       if (nationality) {
         yearlyNationalities[year][nationality] = (yearlyNationalities[year][nationality] || 0) + permits;
       }
 
-      // ---- County ----
+      // ---- County data ----
       const county = row['County'] || row['Location'] || row['Region'];
       if (county) {
         yearlyCounties[year][county] = (yearlyCounties[year][county] || 0) + permits;
       }
 
-      // ---- If no employer but sector exists, still count industry ----
+      // ---- If no employer but sector/industry present, still count industry ----
       if (!employerName && (row['Sector'] || row['Industry'])) {
         const industryRaw = row['Sector'] || row['Industry'] || 'Other';
         const industry = normalizeIndustry(industryRaw);
