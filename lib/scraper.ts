@@ -83,7 +83,6 @@ function readExcelFilesFromDir(dirPath: string): any[] {
   return allRows;
 }
 
-// Only used if no real data found
 function generateSampleData(): DashboardData {
   const companies: Company[] = [
     { name: "Google Ireland", totalPermits: 368, currentYearPermits: 90, trend: "increasing", firstYear: 2020, lastActiveYear: 2026 },
@@ -126,7 +125,6 @@ export async function scrapePermitData() {
     return;
   }
 
-  // Aggregators
   const companyMap = new Map<string, {
     name: string;
     totalPermits: number;
@@ -135,10 +133,7 @@ export async function scrapePermitData() {
     lastYear: number;
   }>();
 
-  // Only company rows contribute to yearly totals
   const yearlyTotals: Record<number, number> = {};
-
-  // For breakdowns (sectors, counties, nationalities) – store yearly data separately
   const sectorMap = new Map<string, { yearly: Record<number, number>; total: number }>();
   const countyMap = new Map<string, { yearly: Record<number, number>; total: number }>();
   const nationalityMap = new Map<string, { yearly: Record<number, number>; total: number }>();
@@ -150,18 +145,19 @@ export async function scrapePermitData() {
     const rows = readExcelFilesFromDir(dirPath);
     if (rows.length === 0) continue;
 
+    let yearTotalFromCompanies = 0;
+
     for (const row of rows) {
       const employerName = getValueByKey(row, ['Employer Name', 'Employer']);
       const economicSector = getValueByKey(row, ['Economic Sector', 'Sector', 'Industry']);
       const nationality = getValueByKey(row, ['Nationality', 'Country']);
       const county = getValueByKey(row, ['County', 'Location']);
 
-      // ---- COMPANY rows (only these contribute to yearly totals) ----
       if (employerName) {
         let permits = sumCompanyPermits(row);
         if (permits === 0) continue;
 
-        yearlyTotals[year] = (yearlyTotals[year] || 0) + permits;
+        yearTotalFromCompanies += permits;
 
         const key = employerName.trim().toLowerCase();
         if (companyMap.has(key)) {
@@ -181,21 +177,17 @@ export async function scrapePermitData() {
         }
       }
 
-      // ---- SECTOR rows (skip summary rows like Total, Grand Total) ----
       if (economicSector) {
         const sectorName = economicSector.trim();
         if (/total|grand total|no sector entered/i.test(sectorName)) continue;
-
         let permits = sumMonthColumns(row);
         if (permits === 0) continue;
-
         if (!sectorMap.has(sectorName)) sectorMap.set(sectorName, { yearly: {}, total: 0 });
         const sec = sectorMap.get(sectorName)!;
         sec.yearly[year] = (sec.yearly[year] || 0) + permits;
         sec.total += permits;
       }
 
-      // ---- NATIONALITY rows ----
       if (nationality) {
         let issued = getValueByKey(row, ['Issued']);
         if (issued === undefined) continue;
@@ -211,7 +203,6 @@ export async function scrapePermitData() {
         nat.total += permits;
       }
 
-      // ---- COUNTY rows ----
       if (county) {
         let issued = getValueByKey(row, ['Issued']);
         if (issued === undefined) continue;
@@ -227,6 +218,9 @@ export async function scrapePermitData() {
         cnt.total += permits;
       }
     }
+
+    yearlyTotals[year] = (yearlyTotals[year] || 0) + yearTotalFromCompanies;
+    console.log(`   📊 Year ${year} company total = ${yearTotalFromCompanies}`);
   }
 
   if (companyMap.size === 0) {
@@ -261,12 +255,10 @@ export async function scrapePermitData() {
     });
   }
 
-  // For the explorer pages, we keep the cumulative totals (all years)
   const sectorsAllYears = Array.from(sectorMap.entries()).map(([name, data]) => ({ name, count: data.total }));
   const counties = Array.from(countyMap.entries()).map(([name, data]) => ({ name, count: data.total }));
   const nationalitiesAllYears = Array.from(nationalityMap.entries()).map(([name, data]) => ({ name, count: data.total }));
 
-  // For the dashboard, we want **current year** sector counts (not cumulative)
   const currentYearSectors = Array.from(sectorMap.entries())
     .map(([name, data]) => ({ name, count: data.yearly[currentYear] || 0 }))
     .filter(s => s.count > 0)
@@ -304,14 +296,14 @@ export async function scrapePermitData() {
   ensureOutputDir();
   writeJSON('dashboard.json', dashboardData);
   writeJSON('companies.json', companies);
-  writeJSON('sectors.json', sectorsAllYears); // for the sectors explorer page
+  writeJSON('sectors.json', sectorsAllYears);
   writeJSON('counties.json', counties);
-  writeJSON('nationalities.json', nationalitiesAllYears); // for the nationalities explorer page
+  writeJSON('nationalities.json', nationalitiesAllYears);
 
   const google = companies.find(c => c.name === 'Google Ireland');
   console.log(`\n✅ Wrote ${companies.length} companies, ${sectorsAllYears.length} sectors, ${counties.length} counties, ${nationalitiesAllYears.length} nationalities.`);
   console.log(`   🎯 Google Ireland 2026 permits = ${google?.currentYearPermits || 0}`);
-  console.log(`   📊 Yearly totals (from company rows only): ${JSON.stringify(yearlyTrends)}`);
+  console.log(`   📊 Yearly totals: ${JSON.stringify(yearlyTrends)}`);
 }
 
 function ensureOutputDir() {
