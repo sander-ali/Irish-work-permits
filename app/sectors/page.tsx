@@ -56,7 +56,7 @@ export default function SectorsPage() {
                 items.map((item, i) => (
                   <tr key={i} className="hover:bg-gray-50">
                     <td className="px-6 py-4 font-medium">{item.name}</td>
-                    <td className="px-6 py-4">{item.total.toLocaleString()}</td>
+                    <td className="px-6 py-4">{item.total.toLocaleString() || 0}</td>
                   </tr>
                 ))
               )}
