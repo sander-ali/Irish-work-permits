@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
-import { Suspense } from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Company {
   name: string;
-  industry: string;
-  currentYearPermits: number;
   totalPermits: number;
-  trend: string;
+  currentYearPermits: number;
+  trend: 'increasing' | 'decreasing' | 'stable';
+  firstYear: number;
   lastActiveYear: number;
 }
 
@@ -22,7 +21,7 @@ interface CompaniesResponse {
   totalPages: number;
 }
 
-function CompaniesClient() {
+export default function CompaniesPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -30,17 +29,20 @@ function CompaniesClient() {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const q = searchParams.get('q') || '';
-  const industry = searchParams.get('industry') || '';
+
+  useEffect(() => {
+    setSearchQuery(q);
+  }, [q]);
 
   const fetchCompanies = useCallback(async () => {
     setLoading(true);
     const params = new URLSearchParams({
       type: 'companies',
       page: page.toString(),
-      query: q,
-      industry: industry,
+      query: searchQuery,
     });
     const res = await fetch(`/api/permits?${params}`);
     const data: CompaniesResponse = await res.json();
@@ -48,74 +50,65 @@ function CompaniesClient() {
     setTotal(data.total);
     setTotalPages(data.totalPages);
     setLoading(false);
-  }, [page, q, industry]);
+  }, [page, searchQuery]);
 
   useEffect(() => {
     fetchCompanies();
   }, [fetchCompanies]);
 
-  const updateFilter = (key: string, value: string) => {
+  const updateSearch = (value: string) => {
     const params = new URLSearchParams(searchParams);
-    if (value) params.set(key, value);
-    else params.delete(key);
+    if (value) params.set('q', value);
+    else params.delete('q');
     params.set('page', '1');
     router.push(`/companies?${params}`);
+  };
+
+  const getTrendBadge = (trend: string) => {
+    const colors = {
+      increasing: 'bg-green-100 text-green-800',
+      decreasing: 'bg-red-100 text-red-800',
+      stable: 'bg-gray-100 text-gray-800',
+    };
+    return colors[trend as keyof typeof colors] || colors.stable;
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Company Explorer</h1>
-        <p className="text-gray-600 mb-6">Search every sponsor, filter by industry, and explore sponsorship history.</p>
+        <p className="text-gray-600 mb-6">Search employers who have sponsored work permits (2017–2026).</p>
 
-        {/* Filters */}
+        {/* Search */}
         <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <input
-                type="text"
-                placeholder="Search by company name or industry..."
-                value={q}
-                onChange={(e) => updateFilter('q', e.target.value)}
-                className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <div className="relative">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <select
-                value={industry}
-                onChange={(e) => updateFilter('industry', e.target.value)}
-                className="pl-9 pr-8 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white"
-              >
-                <option value="">All Industries</option>
-                <option value="Healthcare">Healthcare</option>
-                <option value="Technology">Technology</option>
-                <option value="Engineering & Manufacturing">Engineering & Manufacturing</option>
-                <option value="Business Services & Operations">Business Services & Operations</option>
-                <option value="Finance & Professional Services">Finance & Professional Services</option>
-                <option value="Construction & Trades">Construction & Trades</option>
-              </select>
-            </div>
+          <div className="relative max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <input
+              type="text"
+              placeholder="Search by employer name..."
+              value={searchQuery}
+              onChange={(e) => updateSearch(e.target.value)}
+              className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
         </div>
 
-        {/* Results Count */}
+        {/* Results count */}
         <div className="mb-4 text-sm text-gray-600">
           Showing {companies.length} of {total.toLocaleString()} companies
         </div>
 
-        {/* Companies Table */}
+        {/* Table */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Industry</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Workers (2026)</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employer</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Permits</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">2026 Permits</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trend</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Active</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active Years</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -139,18 +132,14 @@ function CompaniesClient() {
                           {company.name}
                         </Link>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-600">{company.industry}</td>
-                      <td className="px-6 py-4 whitespace-nowrap font-semibold text-gray-900">{company.currentYearPermits.toLocaleString()}</td>
+                      <td className="px-6 py-4 whitespace-nowrap font-semibold text-gray-900">{company.totalPermits.toLocaleString()}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-900">{company.currentYearPermits.toLocaleString()}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex px-2 py-1 text-xs rounded-full ${
-                          company.trend === 'increasing' ? 'bg-green-100 text-green-800' :
-                          company.trend === 'decreasing' ? 'bg-red-100 text-red-800' :
-                          'bg-gray-100 text-gray-800'
-                        }`}>
+                        <span className={`inline-flex px-2 py-1 text-xs rounded-full ${getTrendBadge(company.trend)}`}>
                           {company.trend}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-600">{company.lastActiveYear}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-600">{company.firstYear} – {company.lastActiveYear}</td>
                     </tr>
                   ))
                 )}
@@ -165,38 +154,21 @@ function CompaniesClient() {
             <button
               onClick={() => setPage(p => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
             >
-              <ChevronLeft className="w-4 h-4 mr-1" />
-              Previous
+              <ChevronLeft className="w-4 h-4 mr-1" /> Previous
             </button>
-            <span className="text-sm text-gray-600">
-              Page {page} of {totalPages}
-            </span>
+            <span className="text-sm text-gray-600">Page {page} of {totalPages}</span>
             <button
               onClick={() => setPage(p => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
             >
-              Next
-              <ChevronRight className="w-4 h-4 ml-1" />
+              Next <ChevronRight className="w-4 h-4 ml-1" />
             </button>
           </div>
         )}
       </div>
     </div>
-  );
-}
-
-// Main page component with Suspense boundary
-export default function CompaniesPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    }>
-      <CompaniesClient />
-    </Suspense>
   );
 }
