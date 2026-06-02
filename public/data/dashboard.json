@@ -1,7 +1,7 @@
 {
   "stats": {
     "totalCompanies": 16898,
-    "totalWorkers": 125853,
+    "totalWorkers": 125817,
     "totalCountries": 155,
     "topSector": "Q - Health & Social Work Activities",
     "topSectorCount": 3345
@@ -9,11 +9,11 @@
   "yearlyTrends": [
     {
       "year": 2023,
-      "total": 30981
+      "total": 30973
     },
     {
       "year": 2024,
-      "total": 39390
+      "total": 39362
     },
     {
       "year": 2025,
