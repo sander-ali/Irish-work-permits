@@ -36,7 +36,19 @@ function getValueByKey(row: any, keys: string[]): any {
   return undefined;
 }
 
-function sumCompanyPermits(row: any): number {
+// Extract permit count from a company row: first look for "Grand Total", otherwise sum monthly "Permits Issued" columns
+function getCompanyPermits(row: any): number {
+  // 1) Look for a "Grand Total" column
+  for (const key of Object.keys(row)) {
+    const lowerKey = key.trim().toLowerCase();
+    if (lowerKey.includes('grand total')) {
+      let val = row[key];
+      if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
+      else if (typeof val !== 'number') val = parseFloat(val);
+      if (!isNaN(val)) return val;
+    }
+  }
+  // 2) Fallback: sum monthly "Permits Issued" columns (exclude Grand Total)
   let total = 0;
   for (const key of Object.keys(row)) {
     const trimmedKey = key.trim().toLowerCase();
@@ -145,7 +157,7 @@ export async function scrapePermitData() {
     const rows = readExcelFilesFromDir(dirPath);
     if (rows.length === 0) continue;
 
-    let yearTotalFromCompanies = 0;
+    let yearCompanyTotal = 0;
 
     for (const row of rows) {
       const employerName = getValueByKey(row, ['Employer Name', 'Employer']);
@@ -153,11 +165,16 @@ export async function scrapePermitData() {
       const nationality = getValueByKey(row, ['Nationality', 'Country']);
       const county = getValueByKey(row, ['County', 'Location']);
 
+      // ---- COMPANY rows (only these contribute to yearly totals) ----
       if (employerName) {
-        let permits = sumCompanyPermits(row);
+        let permits = getCompanyPermits(row);
         if (permits === 0) continue;
 
-        yearTotalFromCompanies += permits;
+        yearCompanyTotal += permits;
+
+        if (employerName.toLowerCase().includes('google')) {
+          console.log(`🔍 Google Ireland in ${yearDir}: permits = ${permits}`);
+        }
 
         const key = employerName.trim().toLowerCase();
         if (companyMap.has(key)) {
@@ -177,6 +194,7 @@ export async function scrapePermitData() {
         }
       }
 
+      // ---- SECTOR rows (skip summary rows) ----
       if (economicSector) {
         const sectorName = economicSector.trim();
         if (/total|grand total|no sector entered/i.test(sectorName)) continue;
@@ -188,6 +206,7 @@ export async function scrapePermitData() {
         sec.total += permits;
       }
 
+      // ---- NATIONALITY rows ----
       if (nationality) {
         let issued = getValueByKey(row, ['Issued']);
         if (issued === undefined) continue;
@@ -203,6 +222,7 @@ export async function scrapePermitData() {
         nat.total += permits;
       }
 
+      // ---- COUNTY rows ----
       if (county) {
         let issued = getValueByKey(row, ['Issued']);
         if (issued === undefined) continue;
@@ -219,8 +239,8 @@ export async function scrapePermitData() {
       }
     }
 
-    yearlyTotals[year] = (yearlyTotals[year] || 0) + yearTotalFromCompanies;
-    console.log(`   📊 Year ${year} company total = ${yearTotalFromCompanies}`);
+    yearlyTotals[year] = (yearlyTotals[year] || 0) + yearCompanyTotal;
+    console.log(`   📊 Year ${year} company total = ${yearCompanyTotal}`);
   }
 
   if (companyMap.size === 0) {
