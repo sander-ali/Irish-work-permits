@@ -61,7 +61,7 @@ export default function NationalitiesPage() {
                   items.map((item, idx) => (
                     <tr key={idx} className="hover:bg-gray-50 transition">
                       <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{item.name}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-900">{item.total.toLocaleString()}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-900">{item.total.toLocaleString() || 0}</td>
                     </tr>
                   ))
                 )}
