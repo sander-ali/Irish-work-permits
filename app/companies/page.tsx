@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { Suspense, useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -21,7 +21,8 @@ interface CompaniesResponse {
   totalPages: number;
 }
 
-export default function CompaniesPage() {
+// This component uses useSearchParams and must be wrapped in Suspense
+function CompaniesContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -79,7 +80,6 @@ export default function CompaniesPage() {
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Company Explorer</h1>
         <p className="text-gray-600 mb-6">Search employers who have sponsored work permits (2017–2026).</p>
 
-        {/* Search */}
         <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
           <div className="relative max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -93,12 +93,10 @@ export default function CompaniesPage() {
           </div>
         </div>
 
-        {/* Results count */}
         <div className="mb-4 text-sm text-gray-600">
           Showing {companies.length} of {total.toLocaleString()} companies
         </div>
 
-        {/* Table */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
@@ -148,7 +146,6 @@ export default function CompaniesPage() {
           </div>
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-between items-center mt-6">
             <button
@@ -170,5 +167,18 @@ export default function CompaniesPage() {
         )}
       </div>
     </div>
+  );
+}
+
+// Main page component with Suspense boundary
+export default function CompaniesPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <CompaniesContent />
+    </Suspense>
   );
 }
