@@ -2,7 +2,6 @@ import * as XLSX from 'xlsx';
 import fs from 'fs';
 import path from 'path';
 
-// Types
 export interface Company {
   name: string;
   totalPermits: number;
@@ -29,34 +28,6 @@ export interface DashboardData {
 const DATA_ROOT = path.join(process.cwd(), 'data');
 const OUTPUT_DIR = path.join(process.cwd(), 'public', 'data');
 
-// ----- Helper: Sum monthly columns for company or sector files -----
-function sumMonthlyColumns(row: any, excludeGrandTotal = true): number {
-  let total = 0;
-  for (const key of Object.keys(row)) {
-    const lowerKey = key.toLowerCase();
-    // Skip if we should exclude "grand total"
-    if (excludeGrandTotal && lowerKey.includes('grand total')) continue;
-
-    // For company files: columns starting with "permits issued"
-    if (lowerKey.startsWith('permits issued')) {
-      let val = row[key];
-      if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
-      else if (typeof val !== 'number') val = parseFloat(val);
-      if (!isNaN(val)) total += val;
-    }
-    // For sector files: month names (january, february, ...)
-    else if (['january', 'february', 'march', 'april', 'may', 'june',
-              'july', 'august', 'september', 'october', 'november', 'december'].includes(lowerKey)) {
-      let val = row[key];
-      if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
-      else if (typeof val !== 'number') val = parseFloat(val);
-      if (!isNaN(val)) total += val;
-    }
-  }
-  return total;
-}
-
-// ----- Read all Excel files from a directory -----
 function readExcelFilesFromDir(dirPath: string): any[] {
   if (!fs.existsSync(dirPath)) return [];
   const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.xlsx') || f.endsWith('.xls'));
@@ -74,7 +45,6 @@ function readExcelFilesFromDir(dirPath: string): any[] {
   return allRows;
 }
 
-// ----- Sample fallback data (when no real data is found) -----
 function generateSampleData(): DashboardData {
   const companies: Company[] = [];
   const companyNames = [
@@ -103,7 +73,6 @@ function generateSampleData(): DashboardData {
   };
 }
 
-// ----- Main scraper -----
 export async function scrapePermitData() {
   console.log('📂 Scanning year folders in', DATA_ROOT);
 
@@ -118,7 +87,7 @@ export async function scrapePermitData() {
   });
 
   if (yearDirs.length === 0) {
-    console.warn('⚠️ No year folders (e.g., data/2026/) found. Using sample data.');
+    console.warn('⚠️ No year folders. Using sample data.');
     const sample = generateSampleData();
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     fs.writeFileSync(path.join(OUTPUT_DIR, 'dashboard.json'), JSON.stringify(sample, null, 2));
@@ -129,7 +98,6 @@ export async function scrapePermitData() {
     return;
   }
 
-  // Aggregators
   const companyMap = new Map<string, {
     name: string;
     totalPermits: number;
@@ -151,18 +119,13 @@ export async function scrapePermitData() {
     if (rows.length === 0) continue;
 
     for (const row of rows) {
-      // Detect row type by column presence
-      const employerName = row['Employer Name'] || row['Employer'] || row['Company Name'] || row['Company'];
-      const economicSector = row['Economic Sector'] || row['Economic Sectors'] || row['Sector'] || row['Industry'];
-      const nationality = row['Nationality'] || row['Country'] || row['Citizenship'];
-      const county = row['County'] || row['Location'] || row['Region'];
-
-      // ----- 1) Company rows -----
-      if (employerName) {
-        // Sum monthly "Permits Issued" columns, excluding Grand Total
+      // ---- COMPANY ----
+      if (row['Employer Name']) {
         let permits = 0;
+        // Sum all columns that start with "Permits Issued" but exclude "Grand Total"
         for (const key of Object.keys(row)) {
-          if (key.toLowerCase().startsWith('permits issued') && !key.toLowerCase().includes('grand total')) {
+          const lowerKey = key.toLowerCase();
+          if (lowerKey.startsWith('permits issued') && !lowerKey.includes('grand total')) {
             let val = row[key];
             if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
             else if (typeof val !== 'number') val = parseFloat(val);
@@ -173,7 +136,7 @@ export async function scrapePermitData() {
 
         yearlyTotals[year] = (yearlyTotals[year] || 0) + permits;
 
-        const key = employerName.toString().trim().toLowerCase();
+        const key = row['Employer Name'].trim().toLowerCase();
         if (companyMap.has(key)) {
           const existing = companyMap.get(key)!;
           existing.totalPermits += permits;
@@ -182,18 +145,22 @@ export async function scrapePermitData() {
           existing.firstYear = Math.min(existing.firstYear, year);
         } else {
           companyMap.set(key, {
-            name: employerName.toString().trim(),
+            name: row['Employer Name'].trim(),
             totalPermits: permits,
             yearlyPermits: { [year]: permits },
             firstYear: year,
             lastYear: year,
           });
         }
+
+        // Special debug for Google Ireland
+        if (row['Employer Name'].toLowerCase().includes('google')) {
+          console.log(`🔍 Google Ireland in ${year}: found permits = ${permits}`);
+        }
       }
 
-      // ----- 2) Sector rows -----
-      else if (economicSector) {
-        // Sum month columns (January, February, ...) – exclude Grand Total
+      // ---- SECTOR ----
+      else if (row['Economic Sector']) {
         let sectorPermits = 0;
         for (const key of Object.keys(row)) {
           const lowerKey = key.toLowerCase();
@@ -210,17 +177,16 @@ export async function scrapePermitData() {
 
         yearlyTotals[year] = (yearlyTotals[year] || 0) + sectorPermits;
 
-        const name = economicSector.toString().trim();
+        const name = row['Economic Sector'].trim();
         if (!sectorMap.has(name)) sectorMap.set(name, { yearly: {}, total: 0 });
         const sec = sectorMap.get(name)!;
         sec.yearly[year] = (sec.yearly[year] || 0) + sectorPermits;
         sec.total += sectorPermits;
       }
 
-      // ----- 3) Nationality rows -----
-      else if (nationality) {
+      // ---- NATIONALITY ----
+      else if (row['Nationality'] && row['Issued'] !== undefined) {
         let issued = row['Issued'];
-        if (issued === undefined) continue;
         let permits = 0;
         if (typeof issued === 'string') permits = parseFloat(issued.replace(/,/g, ''));
         else if (typeof issued === 'number') permits = issued;
@@ -229,17 +195,16 @@ export async function scrapePermitData() {
 
         yearlyTotals[year] = (yearlyTotals[year] || 0) + permits;
 
-        const name = nationality.toString().trim();
+        const name = row['Nationality'].trim();
         if (!nationalityMap.has(name)) nationalityMap.set(name, { yearly: {}, total: 0 });
         const nat = nationalityMap.get(name)!;
         nat.yearly[year] = (nat.yearly[year] || 0) + permits;
         nat.total += permits;
       }
 
-      // ----- 4) County rows -----
-      else if (county) {
+      // ---- COUNTY ----
+      else if (row['County'] && row['Issued'] !== undefined) {
         let issued = row['Issued'];
-        if (issued === undefined) continue;
         let permits = 0;
         if (typeof issued === 'string') permits = parseFloat(issued.replace(/,/g, ''));
         else if (typeof issued === 'number') permits = issued;
@@ -248,7 +213,7 @@ export async function scrapePermitData() {
 
         yearlyTotals[year] = (yearlyTotals[year] || 0) + permits;
 
-        const name = county.toString().trim();
+        const name = row['County'].trim();
         if (!countyMap.has(name)) countyMap.set(name, { yearly: {}, total: 0 });
         const cnt = countyMap.get(name)!;
         cnt.yearly[year] = (cnt.yearly[year] || 0) + permits;
@@ -269,7 +234,6 @@ export async function scrapePermitData() {
     return;
   }
 
-  // Build companies array
   const currentYear = 2026;
   const companies: Company[] = [];
   for (const item of companyMap.values()) {
@@ -290,12 +254,10 @@ export async function scrapePermitData() {
     });
   }
 
-  // Prepare sector, county, nationality lists
   const sectors = Array.from(sectorMap.entries()).map(([name, data]) => ({ name, count: data.total }));
   const counties = Array.from(countyMap.entries()).map(([name, data]) => ({ name, count: data.total }));
   const nationalities = Array.from(nationalityMap.entries()).map(([name, data]) => ({ name, count: data.total }));
 
-  // Dashboard stats
   const yearlyTrends = Object.entries(yearlyTotals)
     .map(([year, total]) => ({ year: parseInt(year), total }))
     .sort((a,b) => a.year - b.year);
@@ -318,7 +280,6 @@ export async function scrapePermitData() {
     topNationalities,
   };
 
-  // Write output files
   if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   fs.writeFileSync(path.join(OUTPUT_DIR, 'dashboard.json'), JSON.stringify(dashboardData, null, 2));
   fs.writeFileSync(path.join(OUTPUT_DIR, 'companies.json'), JSON.stringify(companies, null, 2));
@@ -326,8 +287,9 @@ export async function scrapePermitData() {
   fs.writeFileSync(path.join(OUTPUT_DIR, 'counties.json'), JSON.stringify(counties, null, 2));
   fs.writeFileSync(path.join(OUTPUT_DIR, 'nationalities.json'), JSON.stringify(nationalities, null, 2));
 
+  const googleCompany = companies.find(c => c.name === 'Google Ireland');
   console.log(`\n✅ Wrote ${companies.length} companies, ${sectors.length} sectors, ${counties.length} counties, ${nationalities.length} nationalities.`);
-  console.log(`   Example: Google Ireland 2026 permits = ${companies.find(c => c.name === 'Google Ireland')?.currentYearPermits || 0}`);
+  console.log(`   🎯 Google Ireland 2026 permits = ${googleCompany?.currentYearPermits || 0}`);
 }
 
 if (require.main === module) {
