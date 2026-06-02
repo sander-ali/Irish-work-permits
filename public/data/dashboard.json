@@ -4,7 +4,7 @@
     "totalWorkers": 125853,
     "totalCountries": 155,
     "topSector": "Q - Health & Social Work Activities",
-    "topSectorCount": 33831
+    "topSectorCount": 3345
   },
   "yearlyTrends": [
     {
@@ -109,49 +109,49 @@
   "topSectors": [
     {
       "name": "Q - Health & Social Work Activities",
-      "count": 33831
+      "count": 3345
     },
     {
-      "name": "Grand Total",
-      "count": 31044
+      "name": "I - Accommodation & Food Services Activities",
+      "count": 1341
     },
     {
       "name": "J - Information & Communication Activities",
-      "count": 16722
+      "count": 1295
     },
     {
-      "name": "Total",
-      "count": 12219
+      "name": "S - Other Service Activities",
+      "count": 1019
+    },
+    {
+      "name": "F - Construction",
+      "count": 760
     },
     {
       "name": "A - Agriculture, Forestry & Fishing",
-      "count": 7676
-    },
-    {
-      "name": "I - Accommodation & Food Services activities",
-      "count": 5964
+      "count": 751
     }
   ],
   "topNationalities": [
     {
       "name": "India",
-      "count": 39134
+      "count": 3728
     },
     {
       "name": "Philippines",
-      "count": 11994
+      "count": 1913
     },
     {
       "name": "Brazil",
-      "count": 11963
+      "count": 1397
     },
     {
       "name": "China",
-      "count": 6039
+      "count": 667
     },
     {
       "name": "Pakistan",
-      "count": 5227
+      "count": 499
     }
   ]
 }
