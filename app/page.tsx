@@ -101,9 +101,9 @@ export default function HomePage() {
               <p className="text-2xl font-bold">{data?.stats.totalCountries?.toLocaleString() || 0}</p>
             </div>
           </div>
-          <div className="bg-white rounded-xl shadow-md p-6 flex items-center">
-            <TrendingUp className="w-10 h-10 text-orange-600" />
-            <div className="ml-4">
+          <div className="bg-white rounded-xl shadow-md p-6 flex items-start">
+            <TrendingUp className="w-10 h-10 text-orange-600 flex-shrink-0" />
+            <div className="ml-4 flex-1">
               <p className="text-sm text-gray-500">Top Sector</p>
               <p className="text-xl font-bold break-words">{topSector}</p>
               <p className="text-xs text-gray-500">{topSectorCount.toLocaleString()} workers</p>
