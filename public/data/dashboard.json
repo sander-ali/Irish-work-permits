@@ -1,7 +1,7 @@
 {
   "stats": {
     "totalCompanies": 13096,
-    "totalWorkers": 189744,
+    "totalWorkers": 511947,
     "totalCountries": 0,
     "topIndustry": "N/A",
     "topIndustryCount": 0
@@ -9,19 +9,19 @@
   "yearlyTrends": [
     {
       "year": 2023,
-      "total": 0
+      "total": 30981
     },
     {
       "year": 2024,
-      "total": 78780
+      "total": 196950
     },
     {
       "year": 2025,
-      "total": 62088
+      "total": 186264
     },
     {
       "year": 2026,
-      "total": 48876
+      "total": 97752
     }
   ],
   "topCompanies": [
