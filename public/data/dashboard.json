@@ -3,8 +3,8 @@
     "totalCompanies": 13096,
     "totalWorkers": 511947,
     "totalCountries": 0,
-    "topIndustry": "N/A",
-    "topIndustryCount": 0
+    "topSector": "A - Agriculture, Forestry & Fishing",
+    "topSectorCount": 0
   },
   "yearlyTrends": [
     {
@@ -27,7 +27,6 @@
   "topCompanies": [
     {
       "name": "Eileen Nangle and Fennor Farm Ltd",
-      "industry": "Other",
       "totalPermits": 2,
       "currentYearPermits": 0,
       "trend": "stable",
@@ -36,7 +35,6 @@
     },
     {
       "name": "Spórt-Ionad Réigiúinach Chorcaí Cuideachta Faoi Theorainn Rathaiochta",
-      "industry": "Other",
       "totalPermits": 4,
       "currentYearPermits": 0,
       "trend": "decreasing",
@@ -45,7 +43,6 @@
     },
     {
       "name": "Brushfield Ltd",
-      "industry": "Other",
       "totalPermits": 2,
       "currentYearPermits": 0,
       "trend": "stable",
@@ -54,7 +51,6 @@
     },
     {
       "name": "Eversheds Sutherland Legal Support Services Unlimited Company",
-      "industry": "Other",
       "totalPermits": 4,
       "currentYearPermits": 0,
       "trend": "stable",
@@ -63,7 +59,6 @@
     },
     {
       "name": "Honeywell Advanced Limited",
-      "industry": "Other",
       "totalPermits": 30,
       "currentYearPermits": 0,
       "trend": "decreasing",
@@ -72,7 +67,6 @@
     },
     {
       "name": "Hyde & Seek Childcare Limited",
-      "industry": "Other",
       "totalPermits": 6,
       "currentYearPermits": 0,
       "trend": "decreasing",
@@ -81,7 +75,6 @@
     },
     {
       "name": "Little Harvard Childcare Limited",
-      "industry": "Other",
       "totalPermits": 66,
       "currentYearPermits": 0,
       "trend": "decreasing",
@@ -90,7 +83,6 @@
     },
     {
       "name": "MBRC Trading Ltd.",
-      "industry": "Other",
       "totalPermits": 2,
       "currentYearPermits": 0,
       "trend": "stable",
@@ -99,7 +91,6 @@
     },
     {
       "name": "Sat Lian Yong & Man Hing Wai",
-      "industry": "Other",
       "totalPermits": 4,
       "currentYearPermits": 0,
       "trend": "stable",
@@ -108,7 +99,6 @@
     },
     {
       "name": "123 Money Ltd",
-      "industry": "Other",
       "totalPermits": 2,
       "currentYearPermits": 0,
       "trend": "stable",
@@ -116,6 +106,52 @@
       "lastActiveYear": 2024
     }
   ],
-  "topIndustries": [],
-  "topNationalities": []
+  "topSectors": [
+    {
+      "name": "A - Agriculture, Forestry & Fishing",
+      "count": 0
+    },
+    {
+      "name": "B - Mining & Quarrying",
+      "count": 0
+    },
+    {
+      "name": "C - All Other Manufacturing",
+      "count": 0
+    },
+    {
+      "name": "C - Manufacture of Chemicals & Pharmaceuticals",
+      "count": 0
+    },
+    {
+      "name": "C - Manufacture of Computers, Electronics & Optica",
+      "count": 0
+    },
+    {
+      "name": "C - Manufacture of Food, Drink & Tobacco",
+      "count": 0
+    }
+  ],
+  "topNationalities": [
+    {
+      "name": "Afghanistan",
+      "count": 0
+    },
+    {
+      "name": "Albania",
+      "count": 0
+    },
+    {
+      "name": "Algeria",
+      "count": 0
+    },
+    {
+      "name": "Angola",
+      "count": 0
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "count": 0
+    }
+  ]
 }
