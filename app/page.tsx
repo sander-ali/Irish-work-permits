@@ -53,7 +53,7 @@ export default function HomePage() {
       <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-20 text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-            Find Irish Companies That Sponsor Work Permits
+            Find Irish Companies That Sponsor Work Permits System by SAK
           </h1>
           <p className="mt-4 text-xl text-blue-100 max-w-3xl mx-auto">
             Data from Ireland&apos;s Department of Enterprise, Trade and Employment.
