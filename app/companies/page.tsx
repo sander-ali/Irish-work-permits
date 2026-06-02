@@ -130,8 +130,8 @@ function CompaniesContent() {
                           {company.name}
                         </Link>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap font-semibold text-gray-900">{company.totalPermits.toLocaleString()}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-900">{company.currentYearPermits.toLocaleString()}</td>
+                      <td className="px-6 py-4 whitespace-nowrap font-semibold text-gray-900">{company.totalPermits?.toLocaleString() || 0}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-900">{company.currentYearPermits.toLocaleString() || 0}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`inline-flex px-2 py-1 text-xs rounded-full ${getTrendBadge(company.trend)}`}>
                           {company.trend}
