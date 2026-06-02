@@ -1,33 +1,29 @@
 {
   "stats": {
     "totalCompanies": 13096,
-    "totalWorkers": 511947,
-    "totalCountries": 0,
-    "topSector": "A - Agriculture, Forestry & Fishing",
-    "topSectorCount": 0
+    "totalWorkers": 293955,
+    "totalCountries": 138,
+    "topSector": "Grand Total",
+    "topSectorCount": 31044
   },
   "yearlyTrends": [
     {
-      "year": 2023,
-      "total": 30981
-    },
-    {
       "year": 2024,
-      "total": 196950
+      "total": 157560
     },
     {
       "year": 2025,
-      "total": 186264
+      "total": 124176
     },
     {
       "year": 2026,
-      "total": 97752
+      "total": 12219
     }
   ],
   "topCompanies": [
     {
       "name": "Eileen Nangle and Fennor Farm Ltd",
-      "totalPermits": 2,
+      "totalPermits": 1,
       "currentYearPermits": 0,
       "trend": "stable",
       "firstYear": 2024,
@@ -35,7 +31,7 @@
     },
     {
       "name": "Spórt-Ionad Réigiúinach Chorcaí Cuideachta Faoi Theorainn Rathaiochta",
-      "totalPermits": 4,
+      "totalPermits": 2,
       "currentYearPermits": 0,
       "trend": "decreasing",
       "firstYear": 2024,
@@ -43,7 +39,7 @@
     },
     {
       "name": "Brushfield Ltd",
-      "totalPermits": 2,
+      "totalPermits": 1,
       "currentYearPermits": 0,
       "trend": "stable",
       "firstYear": 2024,
@@ -51,7 +47,7 @@
     },
     {
       "name": "Eversheds Sutherland Legal Support Services Unlimited Company",
-      "totalPermits": 4,
+      "totalPermits": 2,
       "currentYearPermits": 0,
       "trend": "stable",
       "firstYear": 2024,
@@ -59,7 +55,7 @@
     },
     {
       "name": "Honeywell Advanced Limited",
-      "totalPermits": 30,
+      "totalPermits": 15,
       "currentYearPermits": 0,
       "trend": "decreasing",
       "firstYear": 2024,
@@ -67,7 +63,7 @@
     },
     {
       "name": "Hyde & Seek Childcare Limited",
-      "totalPermits": 6,
+      "totalPermits": 3,
       "currentYearPermits": 0,
       "trend": "decreasing",
       "firstYear": 2024,
@@ -75,7 +71,7 @@
     },
     {
       "name": "Little Harvard Childcare Limited",
-      "totalPermits": 66,
+      "totalPermits": 33,
       "currentYearPermits": 0,
       "trend": "decreasing",
       "firstYear": 2024,
@@ -83,7 +79,7 @@
     },
     {
       "name": "MBRC Trading Ltd.",
-      "totalPermits": 2,
+      "totalPermits": 1,
       "currentYearPermits": 0,
       "trend": "stable",
       "firstYear": 2024,
@@ -91,7 +87,7 @@
     },
     {
       "name": "Sat Lian Yong & Man Hing Wai",
-      "totalPermits": 4,
+      "totalPermits": 2,
       "currentYearPermits": 0,
       "trend": "stable",
       "firstYear": 2024,
@@ -99,7 +95,7 @@
     },
     {
       "name": "123 Money Ltd",
-      "totalPermits": 2,
+      "totalPermits": 1,
       "currentYearPermits": 0,
       "trend": "stable",
       "firstYear": 2024,
@@ -108,50 +104,50 @@
   ],
   "topSectors": [
     {
+      "name": "Grand Total",
+      "count": 31044
+    },
+    {
+      "name": "Q - Health & Social Work Activities",
+      "count": 20449
+    },
+    {
+      "name": "J - Information & Communication Activities",
+      "count": 10418
+    },
+    {
       "name": "A - Agriculture, Forestry & Fishing",
-      "count": 0
+      "count": 5540
     },
     {
-      "name": "B - Mining & Quarrying",
-      "count": 0
+      "name": "F - Construction",
+      "count": 3554
     },
     {
-      "name": "C - All Other Manufacturing",
-      "count": 0
-    },
-    {
-      "name": "C - Manufacture of Chemicals & Pharmaceuticals",
-      "count": 0
-    },
-    {
-      "name": "C - Manufacture of Computers, Electronics & Optica",
-      "count": 0
-    },
-    {
-      "name": "C - Manufacture of Food, Drink & Tobacco",
-      "count": 0
+      "name": "I - Accommodation & Food Services Activities",
+      "count": 3499
     }
   ],
   "topNationalities": [
     {
-      "name": "Afghanistan",
-      "count": 0
+      "name": "India",
+      "count": 13566
     },
     {
-      "name": "Albania",
-      "count": 0
+      "name": "Brazil",
+      "count": 4553
     },
     {
-      "name": "Algeria",
-      "count": 0
+      "name": "Philippines",
+      "count": 4049
     },
     {
-      "name": "Angola",
-      "count": 0
+      "name": "China",
+      "count": 1962
     },
     {
-      "name": "Antigua and Barbuda",
-      "count": 0
+      "name": "Pakistan",
+      "count": 1742
     }
   ]
 }
