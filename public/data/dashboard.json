@@ -1,7 +1,7 @@
 {
   "stats": {
     "totalCompanies": 27,
-    "totalWorkers": 8081,
+    "totalWorkers": 8902,
     "totalCountries": 87,
     "topIndustry": "Information Technology",
     "topIndustryCount": 8450
@@ -40,91 +40,91 @@
     {
       "name": "Accenture",
       "industry": "Finance & Professional Services",
-      "totalPermits": 162,
-      "currentYearPermits": 106,
+      "totalPermits": 407,
+      "currentYearPermits": 108,
       "trend": "increasing",
-      "firstYear": 2022,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Amazon Data Services",
-      "industry": "Finance & Professional Services",
-      "totalPermits": 149,
-      "currentYearPermits": 99,
-      "trend": "decreasing",
       "firstYear": 2021,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Kerry Group",
-      "industry": "Construction & Trades",
-      "totalPermits": 300,
-      "currentYearPermits": 95,
-      "trend": "stable",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Goldman Sachs",
-      "industry": "Finance & Professional Services",
-      "totalPermits": 87,
-      "currentYearPermits": 92,
-      "trend": "decreasing",
-      "firstYear": 2022,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Intel Ireland",
-      "industry": "Engineering & Manufacturing",
-      "totalPermits": 243,
-      "currentYearPermits": 86,
-      "trend": "stable",
-      "firstYear": 2020,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Janssen Sciences",
-      "industry": "Construction & Trades",
-      "totalPermits": 118,
-      "currentYearPermits": 81,
-      "trend": "stable",
-      "firstYear": 2020,
       "lastActiveYear": 2026
     },
     {
       "name": "Mater Private",
       "industry": "Information Technology",
-      "totalPermits": 250,
-      "currentYearPermits": 77,
+      "totalPermits": 445,
+      "currentYearPermits": 108,
+      "trend": "stable",
+      "firstYear": 2022,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "CRH plc",
+      "industry": "Business Services & Operations",
+      "totalPermits": 366,
+      "currentYearPermits": 106,
+      "trend": "decreasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "PwC",
+      "industry": "Information Technology",
+      "totalPermits": 130,
+      "currentYearPermits": 103,
+      "trend": "increasing",
+      "firstYear": 2021,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Boston Scientific",
+      "industry": "Finance & Professional Services",
+      "totalPermits": 438,
+      "currentYearPermits": 98,
       "trend": "decreasing",
       "firstYear": 2021,
       "lastActiveYear": 2026
     },
     {
-      "name": "Google Ireland",
-      "industry": "Information Technology",
-      "totalPermits": 236,
-      "currentYearPermits": 60,
+      "name": "Janssen Sciences",
+      "industry": "Construction & Trades",
+      "totalPermits": 199,
+      "currentYearPermits": 94,
+      "trend": "increasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Citibank Europe",
+      "industry": "Engineering & Manufacturing",
+      "totalPermits": 496,
+      "currentYearPermits": 90,
+      "trend": "stable",
+      "firstYear": 2021,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "KPMG",
+      "industry": "Engineering & Manufacturing",
+      "totalPermits": 105,
+      "currentYearPermits": 89,
+      "trend": "stable",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Kerry Group",
+      "industry": "Construction & Trades",
+      "totalPermits": 535,
+      "currentYearPermits": 89,
       "trend": "increasing",
       "firstYear": 2021,
       "lastActiveYear": 2026
     },
     {
-      "name": "Ryanair",
+      "name": "Bank of Ireland",
       "industry": "Healthcare",
-      "totalPermits": 539,
-      "currentYearPermits": 60,
+      "totalPermits": 318,
+      "currentYearPermits": 86,
       "trend": "stable",
-      "firstYear": 2020,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Ernst & Young",
-      "industry": "Healthcare",
-      "totalPermits": 461,
-      "currentYearPermits": 59,
-      "trend": "increasing",
-      "firstYear": 2023,
+      "firstYear": 2022,
       "lastActiveYear": 2026
     }
   ],
