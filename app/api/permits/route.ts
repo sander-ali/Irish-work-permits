@@ -2,39 +2,49 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-// Sample data for when files are missing
+// Complete sample data that matches all frontend expectations
 const sampleCompanies = [
   { name: "Google Ireland", totalPermits: 1245, currentYearPermits: 234, trend: "increasing", firstYear: 2018, lastActiveYear: 2026 },
   { name: "Apple Distribution", totalPermits: 987, currentYearPermits: 187, trend: "stable", firstYear: 2019, lastActiveYear: 2026 },
   { name: "Microsoft Ireland", totalPermits: 876, currentYearPermits: 165, trend: "increasing", firstYear: 2017, lastActiveYear: 2026 },
   { name: "Amazon Data Services", totalPermits: 765, currentYearPermits: 143, trend: "decreasing", firstYear: 2018, lastActiveYear: 2026 },
   { name: "Deloitte", totalPermits: 654, currentYearPermits: 98, trend: "stable", firstYear: 2016, lastActiveYear: 2026 },
+  { name: "PwC", totalPermits: 543, currentYearPermits: 76, trend: "increasing", firstYear: 2015, lastActiveYear: 2026 },
 ];
 
 const sampleSectors = [
   { name: "Information Technology", total: 8450 },
   { name: "Healthcare", total: 6230 },
   { name: "Engineering & Manufacturing", total: 5120 },
+  { name: "Finance", total: 4780 },
+  { name: "Business Services", total: 3920 },
+  { name: "Construction", total: 2870 },
 ];
 
 const sampleCounties = [
   { name: "Dublin", total: 21340 },
   { name: "Cork", total: 8920 },
   { name: "Galway", total: 3450 },
+  { name: "Limerick", total: 2980 },
+  { name: "Kildare", total: 2450 },
 ];
 
 const sampleNationalities = [
   { name: "India", total: 12453 },
   { name: "Brazil", total: 6789 },
   { name: "Philippines", total: 5432 },
+  { name: "China", total: 4321 },
+  { name: "USA", total: 3987 },
 ];
 
 const sampleDashboard = {
   stats: {
-    totalCompanies: 1250,
-    totalWorkers: 48762,
+    totalCompanies: sampleCompanies.length,
+    totalWorkers: sampleCompanies.reduce((s,c)=>s+c.totalPermits,0),
     totalCountries: 87,
-    topSector: "Information Technology",
+    topIndustry: "Information Technology",  // kept for compatibility
+    topIndustryCount: 8450,
+    topSector: "Information Technology",   // new field
     topSectorCount: 8450,
   },
   yearlyTrends: [
@@ -46,8 +56,9 @@ const sampleDashboard = {
     { year: 2025, total: 33412 },
     { year: 2026, total: 3621 },
   ],
-  topCompanies: sampleCompanies.slice(0,5),
+  topCompanies: sampleCompanies,
   topSectors: sampleSectors,
+  topIndustries: sampleSectors, // for compatibility
   topNationalities: sampleNationalities,
 };
 
@@ -60,7 +71,6 @@ export async function GET(request: Request) {
 
   const basePath = path.join(process.cwd(), 'public', 'data');
 
-  // Helper to read JSON or return sample
   async function getData(filename: string, sampleData: any) {
     const filePath = path.join(basePath, filename);
     if (fs.existsSync(filePath)) {
