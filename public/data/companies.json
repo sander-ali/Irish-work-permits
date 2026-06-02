@@ -1760,6 +1760,14 @@
     "lastActiveYear": 2026
   },
   {
+    "name": "Abbey Haven Care Centre  Nursing Home Ltd",
+    "totalPermits": 43,
+    "currentYearPermits": 9,
+    "trend": "decreasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
     "name": "Dornan Engineering Limited",
     "totalPermits": 58,
     "currentYearPermits": 9,
@@ -1885,14 +1893,6 @@
     "currentYearPermits": 9,
     "trend": "decreasing",
     "firstYear": 2024,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Abbey Haven Care Centre Nursing Home Ltd",
-    "totalPermits": 22,
-    "currentYearPermits": 9,
-    "trend": "decreasing",
-    "firstYear": 2025,
     "lastActiveYear": 2026
   },
   {
@@ -5856,6 +5856,14 @@
     "lastActiveYear": 2026
   },
   {
+    "name": "Greenvalley Transport  Plant Hire Limited",
+    "totalPermits": 47,
+    "currentYearPermits": 3,
+    "trend": "decreasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
     "name": "Hampton's Bar & Grill Limited",
     "totalPermits": 10,
     "currentYearPermits": 3,
@@ -6424,6 +6432,14 @@
     "lastActiveYear": 2026
   },
   {
+    "name": "TH  Mushrooms Ltd",
+    "totalPermits": 21,
+    "currentYearPermits": 3,
+    "trend": "decreasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
     "name": "Tata Consultancy Services Ireland Limited",
     "totalPermits": 64,
     "currentYearPermits": 3,
@@ -6712,14 +6728,6 @@
     "lastActiveYear": 2026
   },
   {
-    "name": "TH Mushrooms Ltd",
-    "totalPermits": 15,
-    "currentYearPermits": 3,
-    "trend": "decreasing",
-    "firstYear": 2024,
-    "lastActiveYear": 2026
-  },
-  {
     "name": "Tots Creche and Daycare Nursery Limited",
     "totalPermits": 11,
     "currentYearPermits": 3,
@@ -6898,14 +6906,6 @@
   {
     "name": "Gannons City Recovery and Recycling Services Ltd",
     "totalPermits": 7,
-    "currentYearPermits": 3,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Greenvalley Transport Plant Hire Limited",
-    "totalPermits": 24,
     "currentYearPermits": 3,
     "trend": "decreasing",
     "firstYear": 2025,
@@ -8184,6 +8184,14 @@
     "lastActiveYear": 2026
   },
   {
+    "name": "Huang  Lin Limited",
+    "totalPermits": 4,
+    "currentYearPermits": 2,
+    "trend": "increasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
     "name": "I.B.A.T. Limited",
     "totalPermits": 9,
     "currentYearPermits": 2,
@@ -8308,6 +8316,14 @@
     "totalPermits": 11,
     "currentYearPermits": 2,
     "trend": "decreasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "KP  Associates Consulting Engineers Limited",
+    "totalPermits": 4,
+    "currentYearPermits": 2,
+    "trend": "increasing",
     "firstYear": 2023,
     "lastActiveYear": 2026
   },
@@ -8928,6 +8944,14 @@
     "lastActiveYear": 2026
   },
   {
+    "name": "Smith Groundworks  Engineering Ltd",
+    "totalPermits": 10,
+    "currentYearPermits": 2,
+    "trend": "decreasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
     "name": "Soba Asian Street Food Limited",
     "totalPermits": 10,
     "currentYearPermits": 2,
@@ -9260,6 +9284,14 @@
     "totalPermits": 8,
     "currentYearPermits": 2,
     "trend": "stable",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "VHI Health &  Wellbeing DAC",
+    "totalPermits": 24,
+    "currentYearPermits": 2,
+    "trend": "decreasing",
     "firstYear": 2023,
     "lastActiveYear": 2026
   },
@@ -10912,14 +10944,6 @@
     "lastActiveYear": 2026
   },
   {
-    "name": "Smith Groundworks Engineering Ltd",
-    "totalPermits": 8,
-    "currentYearPermits": 2,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2026
-  },
-  {
     "name": "Sri Laxmi Consulting Limited",
     "totalPermits": 5,
     "currentYearPermits": 2,
@@ -11034,14 +11058,6 @@
   {
     "name": "Vertex Roofing Systems Limited",
     "totalPermits": 11,
-    "currentYearPermits": 2,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "VHI Health & Wellbeing DAC",
-    "totalPermits": 9,
     "currentYearPermits": 2,
     "trend": "decreasing",
     "firstYear": 2025,
@@ -11608,14 +11624,6 @@
     "lastActiveYear": 2026
   },
   {
-    "name": "Huang Lin Limited",
-    "totalPermits": 2,
-    "currentYearPermits": 2,
-    "trend": "increasing",
-    "firstYear": 2026,
-    "lastActiveYear": 2026
-  },
-  {
     "name": "Inishoo Management Ltd.",
     "totalPermits": 2,
     "currentYearPermits": 2,
@@ -11737,14 +11745,6 @@
   },
   {
     "name": "KOR Retail Limited",
-    "totalPermits": 2,
-    "currentYearPermits": 2,
-    "trend": "increasing",
-    "firstYear": 2026,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "KP Associates Consulting Engineers Limited",
     "totalPermits": 2,
     "currentYearPermits": 2,
     "trend": "increasing",
@@ -12548,6 +12548,14 @@
     "totalPermits": 5,
     "currentYearPermits": 1,
     "trend": "increasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Aer Lingus Limited",
+    "totalPermits": 29,
+    "currentYearPermits": 1,
+    "trend": "decreasing",
     "firstYear": 2023,
     "lastActiveYear": 2026
   },
@@ -15376,6 +15384,14 @@
     "lastActiveYear": 2026
   },
   {
+    "name": "JC Mortgages Limited",
+    "totalPermits": 3,
+    "currentYearPermits": 1,
+    "trend": "stable",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
     "name": "JJ Savoury Ramen Ltd",
     "totalPermits": 6,
     "currentYearPermits": 1,
@@ -15732,6 +15748,14 @@
     "totalPermits": 5,
     "currentYearPermits": 1,
     "trend": "stable",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Kingsmeade Bar  Restaurant Ltd",
+    "totalPermits": 7,
+    "currentYearPermits": 1,
+    "trend": "decreasing",
     "firstYear": 2023,
     "lastActiveYear": 2026
   },
@@ -16314,6 +16338,14 @@
   {
     "name": "Michael Walsh Autos Ltd",
     "totalPermits": 4,
+    "currentYearPermits": 1,
+    "trend": "decreasing",
+    "firstYear": 2023,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Michael Ward  Andrew Clarke",
+    "totalPermits": 6,
     "currentYearPermits": 1,
     "trend": "decreasing",
     "firstYear": 2023,
@@ -19360,6 +19392,14 @@
     "lastActiveYear": 2026
   },
   {
+    "name": "C  N Higgins Construction Ltd",
+    "totalPermits": 2,
+    "currentYearPermits": 1,
+    "trend": "increasing",
+    "firstYear": 2024,
+    "lastActiveYear": 2026
+  },
+  {
     "name": "Canto DAM Ireland Limited",
     "totalPermits": 8,
     "currentYearPermits": 1,
@@ -19444,6 +19484,14 @@
     "totalPermits": 4,
     "currentYearPermits": 1,
     "trend": "decreasing",
+    "firstYear": 2024,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "Churchfield Home Services Limited",
+    "totalPermits": 3,
+    "currentYearPermits": 1,
+    "trend": "stable",
     "firstYear": 2024,
     "lastActiveYear": 2026
   },
@@ -20772,6 +20820,14 @@
     "totalPermits": 6,
     "currentYearPermits": 1,
     "trend": "decreasing",
+    "firstYear": 2024,
+    "lastActiveYear": 2026
+  },
+  {
+    "name": "L  B Childcare Services Limited",
+    "totalPermits": 2,
+    "currentYearPermits": 1,
+    "trend": "increasing",
     "firstYear": 2024,
     "lastActiveYear": 2026
   },
@@ -22408,6 +22464,14 @@
     "lastActiveYear": 2026
   },
   {
+    "name": "Wu  Ruan Cafe Limited",
+    "totalPermits": 2,
+    "currentYearPermits": 1,
+    "trend": "increasing",
+    "firstYear": 2024,
+    "lastActiveYear": 2026
+  },
+  {
     "name": "XL Catlin Services SE",
     "totalPermits": 4,
     "currentYearPermits": 1,
@@ -22546,14 +22610,6 @@
   {
     "name": "Acuity Digital Ireland Limited",
     "totalPermits": 3,
-    "currentYearPermits": 1,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Aer Lingus  Limited",
-    "totalPermits": 12,
     "currentYearPermits": 1,
     "trend": "decreasing",
     "firstYear": 2025,
@@ -23968,14 +24024,6 @@
     "lastActiveYear": 2026
   },
   {
-    "name": "Jc  Mortgages Limited",
-    "totalPermits": 2,
-    "currentYearPermits": 1,
-    "trend": "stable",
-    "firstYear": 2025,
-    "lastActiveYear": 2026
-  },
-  {
     "name": "Jingdong Express Ireland Limited",
     "totalPermits": 4,
     "currentYearPermits": 1,
@@ -24137,14 +24185,6 @@
   },
   {
     "name": "Kingdom Crash Repairs Ltd",
-    "totalPermits": 3,
-    "currentYearPermits": 1,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Kingsmeade Bar Restaurant Ltd",
     "totalPermits": 3,
     "currentYearPermits": 1,
     "trend": "decreasing",
@@ -24354,14 +24394,6 @@
   {
     "name": "Medicall Ambulance Limited",
     "totalPermits": 3,
-    "currentYearPermits": 1,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Michael Ward Andrew Clarke",
-    "totalPermits": 4,
     "currentYearPermits": 1,
     "trend": "decreasing",
     "firstYear": 2025,
@@ -26464,14 +26496,6 @@
     "lastActiveYear": 2026
   },
   {
-    "name": "C N Higgins Construction Ltd",
-    "totalPermits": 1,
-    "currentYearPermits": 1,
-    "trend": "increasing",
-    "firstYear": 2026,
-    "lastActiveYear": 2026
-  },
-  {
     "name": "C.E.L PROPERTY INVESTMENT COMPANY LIMITED",
     "totalPermits": 1,
     "currentYearPermits": 1,
@@ -26785,14 +26809,6 @@
   },
   {
     "name": "Christy Collins & Sons Construction ltd",
-    "totalPermits": 1,
-    "currentYearPermits": 1,
-    "trend": "increasing",
-    "firstYear": 2026,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "Churchfield Home Services Limited",
     "totalPermits": 1,
     "currentYearPermits": 1,
     "trend": "increasing",
@@ -29673,14 +29689,6 @@
   },
   {
     "name": "KWIKCODE TECH LIMITED",
-    "totalPermits": 1,
-    "currentYearPermits": 1,
-    "trend": "increasing",
-    "firstYear": 2026,
-    "lastActiveYear": 2026
-  },
-  {
-    "name": "L B Childcare Services Limited",
     "totalPermits": 1,
     "currentYearPermits": 1,
     "trend": "increasing",
@@ -33688,14 +33696,6 @@
     "lastActiveYear": 2026
   },
   {
-    "name": "Wu Ruan Cafe Limited",
-    "totalPermits": 1,
-    "currentYearPermits": 1,
-    "trend": "increasing",
-    "firstYear": 2026,
-    "lastActiveYear": 2026
-  },
-  {
     "name": "Xcqz Dragon Inn Limited",
     "totalPermits": 1,
     "currentYearPermits": 1,
@@ -34344,14 +34344,6 @@
     "lastActiveYear": 2023
   },
   {
-    "name": "Abbey Haven Care Centre  Nursing Home Ltd",
-    "totalPermits": 21,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2024
-  },
-  {
     "name": "Abbey Lane Hotel (Trading) Ltd",
     "totalPermits": 4,
     "currentYearPermits": 0,
@@ -34846,14 +34838,6 @@
     "trend": "stable",
     "firstYear": 2023,
     "lastActiveYear": 2024
-  },
-  {
-    "name": "Aer Lingus Limited",
-    "totalPermits": 17,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2023
   },
   {
     "name": "Aer Soléir Management Limited",
@@ -44233,11 +44217,11 @@
   },
   {
     "name": "Denis O'Sullivan  Co. Ltd.",
-    "totalPermits": 1,
+    "totalPermits": 2,
     "currentYearPermits": 0,
-    "trend": "stable",
+    "trend": "decreasing",
     "firstYear": 2023,
-    "lastActiveYear": 2023
+    "lastActiveYear": 2025
   },
   {
     "name": "Denis, Maura Declan O'Meara Dairy Partnership",
@@ -50248,14 +50232,6 @@
     "lastActiveYear": 2025
   },
   {
-    "name": "Greenvalley Transport  Plant Hire Limited",
-    "totalPermits": 23,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2024
-  },
-  {
     "name": "Greenvalley Transport  Plant Hire Ltd",
     "totalPermits": 4,
     "currentYearPermits": 0,
@@ -51886,14 +51862,6 @@
     "trend": "stable",
     "firstYear": 2023,
     "lastActiveYear": 2024
-  },
-  {
-    "name": "Huang  Lin Limited",
-    "totalPermits": 2,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2023
   },
   {
     "name": "Huaqiang Xie",
@@ -53728,14 +53696,6 @@
     "lastActiveYear": 2023
   },
   {
-    "name": "JC Mortgages Limited",
-    "totalPermits": 1,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2023
-  },
-  {
     "name": "JCK Food Limited",
     "totalPermits": 1,
     "currentYearPermits": 0,
@@ -54784,14 +54744,6 @@
     "lastActiveYear": 2023
   },
   {
-    "name": "KP  Associates Consulting Engineers Limited",
-    "totalPermits": 2,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2024
-  },
-  {
     "name": "KPK Food Enterprises Limited",
     "totalPermits": 5,
     "currentYearPermits": 0,
@@ -55566,14 +55518,6 @@
     "trend": "stable",
     "firstYear": 2023,
     "lastActiveYear": 2023
-  },
-  {
-    "name": "Kingsmeade Bar  Restaurant Ltd",
-    "totalPermits": 4,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2024
   },
   {
     "name": "Kingspan Insulation Limited",
@@ -58961,19 +58905,11 @@
   },
   {
     "name": "Michael Punch  Partners Ltd.",
-    "totalPermits": 16,
+    "totalPermits": 17,
     "currentYearPermits": 0,
-    "trend": "stable",
+    "trend": "decreasing",
     "firstYear": 2023,
-    "lastActiveYear": 2024
-  },
-  {
-    "name": "Michael Ward  Andrew Clarke",
-    "totalPermits": 2,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2023
+    "lastActiveYear": 2025
   },
   {
     "name": "Michie Sushi Ltd.",
@@ -67729,11 +67665,11 @@
   },
   {
     "name": "Sixmilebridge District Community  Services Company Limited by Guarantee",
-    "totalPermits": 1,
+    "totalPermits": 2,
     "currentYearPermits": 0,
-    "trend": "stable",
+    "trend": "decreasing",
     "firstYear": 2023,
-    "lastActiveYear": 2023
+    "lastActiveYear": 2025
   },
   {
     "name": "Skein Press",
@@ -67942,14 +67878,6 @@
     "trend": "stable",
     "firstYear": 2023,
     "lastActiveYear": 2024
-  },
-  {
-    "name": "Smith Groundworks  Engineering Ltd",
-    "totalPermits": 2,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2023
   },
   {
     "name": "Smith Hall Ltd",
@@ -69640,14 +69568,6 @@
     "lastActiveYear": 2023
   },
   {
-    "name": "TH  Mushrooms Ltd",
-    "totalPermits": 6,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2023
-  },
-  {
     "name": "TH Foods Limited",
     "totalPermits": 6,
     "currentYearPermits": 0,
@@ -71297,15 +71217,7 @@
   },
   {
     "name": "Tom McNamara  Partners Ltd",
-    "totalPermits": 1,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2023
-  },
-  {
-    "name": "Tom McNamara Partners Ltd",
-    "totalPermits": 1,
+    "totalPermits": 2,
     "currentYearPermits": 0,
     "trend": "stable",
     "firstYear": 2023,
@@ -72690,14 +72602,6 @@
   {
     "name": "Vhi Group Services DAC",
     "totalPermits": 40,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2023,
-    "lastActiveYear": 2024
-  },
-  {
-    "name": "VHI Health &  Wellbeing DAC",
-    "totalPermits": 15,
     "currentYearPermits": 0,
     "trend": "stable",
     "firstYear": 2023,
@@ -79856,14 +79760,6 @@
     "lastActiveYear": 2025
   },
   {
-    "name": "C  N Higgins Construction Ltd",
-    "totalPermits": 1,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2024,
-    "lastActiveYear": 2024
-  },
-  {
     "name": "C&J Meats (Ire) Limited",
     "totalPermits": 8,
     "currentYearPermits": 0,
@@ -81065,15 +80961,7 @@
   },
   {
     "name": "Christchurch Crèche Montessori School Ltd",
-    "totalPermits": 1,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2024,
-    "lastActiveYear": 2024
-  },
-  {
-    "name": "Christchurch crèche  Montessori School Ltd",
-    "totalPermits": 1,
+    "totalPermits": 2,
     "currentYearPermits": 0,
     "trend": "stable",
     "firstYear": 2024,
@@ -81110,14 +80998,6 @@
     "trend": "stable",
     "firstYear": 2024,
     "lastActiveYear": 2024
-  },
-  {
-    "name": "Churchfield Home Services Limited",
-    "totalPermits": 2,
-    "currentYearPermits": 0,
-    "trend": "decreasing",
-    "firstYear": 2024,
-    "lastActiveYear": 2025
   },
   {
     "name": "Churchview Foods Ltd",
@@ -83529,11 +83409,11 @@
   },
   {
     "name": "Derry Court  Company Limited",
-    "totalPermits": 1,
+    "totalPermits": 3,
     "currentYearPermits": 0,
-    "trend": "stable",
+    "trend": "decreasing",
     "firstYear": 2024,
-    "lastActiveYear": 2024
+    "lastActiveYear": 2025
   },
   {
     "name": "Des Nally Developments Ltd",
@@ -86705,11 +86585,11 @@
   },
   {
     "name": "Fortescue  Bachelor Retail Limited",
-    "totalPermits": 1,
+    "totalPermits": 2,
     "currentYearPermits": 0,
-    "trend": "stable",
+    "trend": "decreasing",
     "firstYear": 2024,
-    "lastActiveYear": 2024
+    "lastActiveYear": 2025
   },
   {
     "name": "Forthside Lodge Limited",
@@ -92425,15 +92305,7 @@
   },
   {
     "name": "Kylemore  Doors Limited",
-    "totalPermits": 2,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2024,
-    "lastActiveYear": 2024
-  },
-  {
-    "name": "Kylemore Doors Limited",
-    "totalPermits": 1,
+    "totalPermits": 3,
     "currentYearPermits": 0,
     "trend": "stable",
     "firstYear": 2024,
@@ -92458,14 +92330,6 @@
   {
     "name": "Kyoto Japanese Restaurant Limited",
     "totalPermits": 2,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2024,
-    "lastActiveYear": 2024
-  },
-  {
-    "name": "L  B Childcare Services Limited",
-    "totalPermits": 1,
     "currentYearPermits": 0,
     "trend": "stable",
     "firstYear": 2024,
@@ -106489,15 +106353,7 @@
   },
   {
     "name": "Walter Reilly  Sons Ltd",
-    "totalPermits": 2,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2024,
-    "lastActiveYear": 2024
-  },
-  {
-    "name": "Walter Reilly Sons Ltd",
-    "totalPermits": 1,
+    "totalPermits": 3,
     "currentYearPermits": 0,
     "trend": "stable",
     "firstYear": 2024,
@@ -107193,14 +107049,6 @@
   },
   {
     "name": "Wshi Unlimited Company",
-    "totalPermits": 1,
-    "currentYearPermits": 0,
-    "trend": "stable",
-    "firstYear": 2024,
-    "lastActiveYear": 2024
-  },
-  {
-    "name": "Wu  Ruan Cafe Limited",
     "totalPermits": 1,
     "currentYearPermits": 0,
     "trend": "stable",
@@ -114824,14 +114672,6 @@
     "lastActiveYear": 2025
   },
   {
-    "name": "Denis O'Sullivan Co. Ltd.",
-    "totalPermits": 1,
-    "currentYearPermits": 0,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2025
-  },
-  {
     "name": "Denis Perfect Finish Construction Limited",
     "totalPermits": 1,
     "currentYearPermits": 0,
@@ -114890,14 +114730,6 @@
   {
     "name": "Dermot Redmond Engineering Ltd",
     "totalPermits": 1,
-    "currentYearPermits": 0,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2025
-  },
-  {
-    "name": "Derry Court Company Limited",
-    "totalPermits": 2,
     "currentYearPermits": 0,
     "trend": "decreasing",
     "firstYear": 2025,
@@ -117514,14 +117346,6 @@
   {
     "name": "Fort Motors Limited",
     "totalPermits": 3,
-    "currentYearPermits": 0,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2025
-  },
-  {
-    "name": "Fortescue Bachelor Retail Limited",
-    "totalPermits": 1,
     "currentYearPermits": 0,
     "trend": "decreasing",
     "firstYear": 2025,
@@ -124720,14 +124544,6 @@
     "lastActiveYear": 2025
   },
   {
-    "name": "Michael Punch Partners Ltd.",
-    "totalPermits": 1,
-    "currentYearPermits": 0,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2025
-  },
-  {
     "name": "Michael Silke",
     "totalPermits": 1,
     "currentYearPermits": 0,
@@ -130905,14 +130721,6 @@
   },
   {
     "name": "Siroos Sofizadeh",
-    "totalPermits": 1,
-    "currentYearPermits": 0,
-    "trend": "decreasing",
-    "firstYear": 2025,
-    "lastActiveYear": 2025
-  },
-  {
-    "name": "Sixmilebridge District Community Services Company Limited by Guarantee",
     "totalPermits": 1,
     "currentYearPermits": 0,
     "trend": "decreasing",
