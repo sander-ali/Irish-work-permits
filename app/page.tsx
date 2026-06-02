@@ -105,7 +105,7 @@ export default function HomePage() {
             <TrendingUp className="w-10 h-10 text-orange-600" />
             <div className="ml-4">
               <p className="text-sm text-gray-500">Top Sector</p>
-              <p className="text-xl font-bold truncate">{topSector}</p>
+              <p className="text-xl font-bold break-words">{topSector}</p>
               <p className="text-xs text-gray-500">{topSectorCount.toLocaleString()} workers</p>
             </div>
           </div>
