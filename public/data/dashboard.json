@@ -1,153 +1,157 @@
 {
   "stats": {
-    "totalCompanies": 13096,
-    "totalWorkers": 293955,
-    "totalCountries": 138,
-    "topSector": "Grand Total",
-    "topSectorCount": 31044
+    "totalCompanies": 16922,
+    "totalWorkers": 125853,
+    "totalCountries": 155,
+    "topSector": "Q - Health & Social Work Activities",
+    "topSectorCount": 33831
   },
   "yearlyTrends": [
     {
+      "year": 2023,
+      "total": 30981
+    },
+    {
       "year": 2024,
-      "total": 157560
+      "total": 39390
     },
     {
       "year": 2025,
-      "total": 124176
+      "total": 31044
     },
     {
       "year": 2026,
-      "total": 12219
+      "total": 24438
     }
   ],
   "topCompanies": [
     {
-      "name": "Eileen Nangle and Fennor Farm Ltd",
-      "totalPermits": 1,
-      "currentYearPermits": 0,
-      "trend": "stable",
-      "firstYear": 2024,
-      "lastActiveYear": 2024
+      "name": "Total",
+      "totalPermits": 12219,
+      "currentYearPermits": 12219,
+      "trend": "increasing",
+      "firstYear": 2026,
+      "lastActiveYear": 2026
     },
     {
-      "name": "Spórt-Ionad Réigiúinach Chorcaí Cuideachta Faoi Theorainn Rathaiochta",
-      "totalPermits": 2,
-      "currentYearPermits": 0,
+      "name": "Redwood Extended Care Facility Unlimited Company",
+      "totalPermits": 137,
+      "currentYearPermits": 137,
+      "trend": "increasing",
+      "firstYear": 2026,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Dawn Meats Ireland UC",
+      "totalPermits": 990,
+      "currentYearPermits": 134,
+      "trend": "increasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Costern Unlimited Company",
+      "totalPermits": 319,
+      "currentYearPermits": 108,
       "trend": "decreasing",
       "firstYear": 2024,
-      "lastActiveYear": 2025
+      "lastActiveYear": 2026
     },
     {
-      "name": "Brushfield Ltd",
-      "totalPermits": 1,
-      "currentYearPermits": 0,
-      "trend": "stable",
-      "firstYear": 2024,
-      "lastActiveYear": 2024
+      "name": "Bus Átha Cliath - Dublin Bus",
+      "totalPermits": 103,
+      "currentYearPermits": 103,
+      "trend": "increasing",
+      "firstYear": 2026,
+      "lastActiveYear": 2026
     },
     {
-      "name": "Eversheds Sutherland Legal Support Services Unlimited Company",
-      "totalPermits": 2,
-      "currentYearPermits": 0,
-      "trend": "stable",
-      "firstYear": 2024,
-      "lastActiveYear": 2024
+      "name": "Applus Inspection Services Ireland Limited",
+      "totalPermits": 102,
+      "currentYearPermits": 102,
+      "trend": "increasing",
+      "firstYear": 2026,
+      "lastActiveYear": 2026
     },
     {
-      "name": "Honeywell Advanced Limited",
-      "totalPermits": 15,
-      "currentYearPermits": 0,
+      "name": "Resilience Healthcare Limited",
+      "totalPermits": 208,
+      "currentYearPermits": 91,
       "trend": "decreasing",
-      "firstYear": 2024,
-      "lastActiveYear": 2025
+      "firstYear": 2025,
+      "lastActiveYear": 2026
     },
     {
-      "name": "Hyde & Seek Childcare Limited",
-      "totalPermits": 3,
-      "currentYearPermits": 0,
+      "name": "Google Ireland Limited",
+      "totalPermits": 1161,
+      "currentYearPermits": 90,
       "trend": "decreasing",
-      "firstYear": 2024,
-      "lastActiveYear": 2025
+      "firstYear": 2023,
+      "lastActiveYear": 2026
     },
     {
-      "name": "Little Harvard Childcare Limited",
-      "totalPermits": 33,
-      "currentYearPermits": 0,
-      "trend": "decreasing",
-      "firstYear": 2024,
-      "lastActiveYear": 2025
+      "name": "InisCare Limited",
+      "totalPermits": 410,
+      "currentYearPermits": 86,
+      "trend": "increasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
     },
     {
-      "name": "MBRC Trading Ltd.",
-      "totalPermits": 1,
-      "currentYearPermits": 0,
+      "name": "Circet Networks (Ireland) Limited",
+      "totalPermits": 185,
+      "currentYearPermits": 74,
       "trend": "stable",
-      "firstYear": 2024,
-      "lastActiveYear": 2024
-    },
-    {
-      "name": "Sat Lian Yong & Man Hing Wai",
-      "totalPermits": 2,
-      "currentYearPermits": 0,
-      "trend": "stable",
-      "firstYear": 2024,
-      "lastActiveYear": 2024
-    },
-    {
-      "name": "123 Money Ltd",
-      "totalPermits": 1,
-      "currentYearPermits": 0,
-      "trend": "stable",
-      "firstYear": 2024,
-      "lastActiveYear": 2024
+      "firstYear": 2023,
+      "lastActiveYear": 2026
     }
   ],
   "topSectors": [
+    {
+      "name": "Q - Health & Social Work Activities",
+      "count": 33831
+    },
     {
       "name": "Grand Total",
       "count": 31044
     },
     {
-      "name": "Q - Health & Social Work Activities",
-      "count": 20449
+      "name": "J - Information & Communication Activities",
+      "count": 16722
     },
     {
-      "name": "J - Information & Communication Activities",
-      "count": 10418
+      "name": "Total",
+      "count": 12219
     },
     {
       "name": "A - Agriculture, Forestry & Fishing",
-      "count": 5540
+      "count": 7676
     },
     {
-      "name": "F - Construction",
-      "count": 3554
-    },
-    {
-      "name": "I - Accommodation & Food Services Activities",
-      "count": 3499
+      "name": "I - Accommodation & Food Services activities",
+      "count": 5964
     }
   ],
   "topNationalities": [
     {
       "name": "India",
-      "count": 13566
-    },
-    {
-      "name": "Brazil",
-      "count": 4553
+      "count": 39134
     },
     {
       "name": "Philippines",
-      "count": 4049
+      "count": 11994
+    },
+    {
+      "name": "Brazil",
+      "count": 11963
     },
     {
       "name": "China",
-      "count": 1962
+      "count": 6039
     },
     {
       "name": "Pakistan",
-      "count": 1742
+      "count": 5227
     }
   ]
 }
