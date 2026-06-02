@@ -7,8 +7,8 @@ import { BarChart3, Building2, Home, Search, MapPin, Globe2, Briefcase } from 'l
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Irish Work Permit Sponsors | Official DETE Data',
-  description: 'Search Irish companies that sponsor work permits. Official data from Ireland\'s Department of Enterprise, Trade and Employment.',
+  title: 'Irish Work Permit Sponsors | A Website by Sunder Ali Khowaja',
+  description: 'Search Irish companies that sponsor work permits. Data is based on Ireland\'s Department of Enterprise, Trade and Employment.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                     IrishWorkPermits
                   </span>
-                  <span className="text-xs text-gray-500 hidden sm:inline">Official DETE Data</span>
+                  <span className="text-xs text-gray-500 hidden sm:inline">Based on DETE Data</span>
                 </Link>
               </div>
 
