@@ -1,179 +1,121 @@
 {
   "stats": {
-    "totalCompanies": 27,
-    "totalWorkers": 8902,
-    "totalCountries": 87,
-    "topIndustry": "Information Technology",
-    "topIndustryCount": 8450
+    "totalCompanies": 13096,
+    "totalWorkers": 189744,
+    "totalCountries": 0,
+    "topIndustry": "N/A",
+    "topIndustryCount": 0
   },
   "yearlyTrends": [
     {
-      "year": 2020,
-      "total": 15234
-    },
-    {
-      "year": 2021,
-      "total": 18763
-    },
-    {
-      "year": 2022,
-      "total": 23122
-    },
-    {
       "year": 2023,
-      "total": 28901
+      "total": 0
     },
     {
       "year": 2024,
-      "total": 31245
+      "total": 78780
     },
     {
       "year": 2025,
-      "total": 33412
+      "total": 62088
     },
     {
       "year": 2026,
-      "total": 3621
+      "total": 48876
     }
   ],
   "topCompanies": [
     {
-      "name": "Accenture",
-      "industry": "Finance & Professional Services",
-      "totalPermits": 407,
-      "currentYearPermits": 108,
-      "trend": "increasing",
-      "firstYear": 2021,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Mater Private",
-      "industry": "Information Technology",
-      "totalPermits": 445,
-      "currentYearPermits": 108,
+      "name": "Eileen Nangle and Fennor Farm Ltd",
+      "industry": "Other",
+      "totalPermits": 2,
+      "currentYearPermits": 0,
       "trend": "stable",
-      "firstYear": 2022,
-      "lastActiveYear": 2026
+      "firstYear": 2024,
+      "lastActiveYear": 2024
     },
     {
-      "name": "CRH plc",
-      "industry": "Business Services & Operations",
-      "totalPermits": 366,
-      "currentYearPermits": 106,
+      "name": "Spórt-Ionad Réigiúinach Chorcaí Cuideachta Faoi Theorainn Rathaiochta",
+      "industry": "Other",
+      "totalPermits": 4,
+      "currentYearPermits": 0,
       "trend": "decreasing",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
+      "firstYear": 2024,
+      "lastActiveYear": 2025
     },
     {
-      "name": "PwC",
-      "industry": "Information Technology",
-      "totalPermits": 130,
-      "currentYearPermits": 103,
-      "trend": "increasing",
-      "firstYear": 2021,
-      "lastActiveYear": 2026
+      "name": "Brushfield Ltd",
+      "industry": "Other",
+      "totalPermits": 2,
+      "currentYearPermits": 0,
+      "trend": "stable",
+      "firstYear": 2024,
+      "lastActiveYear": 2024
     },
     {
-      "name": "Boston Scientific",
-      "industry": "Finance & Professional Services",
-      "totalPermits": 438,
-      "currentYearPermits": 98,
+      "name": "Eversheds Sutherland Legal Support Services Unlimited Company",
+      "industry": "Other",
+      "totalPermits": 4,
+      "currentYearPermits": 0,
+      "trend": "stable",
+      "firstYear": 2024,
+      "lastActiveYear": 2024
+    },
+    {
+      "name": "Honeywell Advanced Limited",
+      "industry": "Other",
+      "totalPermits": 30,
+      "currentYearPermits": 0,
       "trend": "decreasing",
-      "firstYear": 2021,
-      "lastActiveYear": 2026
+      "firstYear": 2024,
+      "lastActiveYear": 2025
     },
     {
-      "name": "Janssen Sciences",
-      "industry": "Construction & Trades",
-      "totalPermits": 199,
-      "currentYearPermits": 94,
-      "trend": "increasing",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
+      "name": "Hyde & Seek Childcare Limited",
+      "industry": "Other",
+      "totalPermits": 6,
+      "currentYearPermits": 0,
+      "trend": "decreasing",
+      "firstYear": 2024,
+      "lastActiveYear": 2025
     },
     {
-      "name": "Citibank Europe",
-      "industry": "Engineering & Manufacturing",
-      "totalPermits": 496,
-      "currentYearPermits": 90,
+      "name": "Little Harvard Childcare Limited",
+      "industry": "Other",
+      "totalPermits": 66,
+      "currentYearPermits": 0,
+      "trend": "decreasing",
+      "firstYear": 2024,
+      "lastActiveYear": 2025
+    },
+    {
+      "name": "MBRC Trading Ltd.",
+      "industry": "Other",
+      "totalPermits": 2,
+      "currentYearPermits": 0,
       "trend": "stable",
-      "firstYear": 2021,
-      "lastActiveYear": 2026
+      "firstYear": 2024,
+      "lastActiveYear": 2024
     },
     {
-      "name": "KPMG",
-      "industry": "Engineering & Manufacturing",
-      "totalPermits": 105,
-      "currentYearPermits": 89,
+      "name": "Sat Lian Yong & Man Hing Wai",
+      "industry": "Other",
+      "totalPermits": 4,
+      "currentYearPermits": 0,
       "trend": "stable",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
+      "firstYear": 2024,
+      "lastActiveYear": 2024
     },
     {
-      "name": "Kerry Group",
-      "industry": "Construction & Trades",
-      "totalPermits": 535,
-      "currentYearPermits": 89,
-      "trend": "increasing",
-      "firstYear": 2021,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Bank of Ireland",
-      "industry": "Healthcare",
-      "totalPermits": 318,
-      "currentYearPermits": 86,
+      "name": "123 Money Ltd",
+      "industry": "Other",
+      "totalPermits": 2,
+      "currentYearPermits": 0,
       "trend": "stable",
-      "firstYear": 2022,
-      "lastActiveYear": 2026
+      "firstYear": 2024,
+      "lastActiveYear": 2024
     }
   ],
-  "topIndustries": [
-    {
-      "name": "Information Technology",
-      "count": 8450
-    },
-    {
-      "name": "Healthcare",
-      "count": 6230
-    },
-    {
-      "name": "Engineering & Manufacturing",
-      "count": 5120
-    },
-    {
-      "name": "Finance & Professional Services",
-      "count": 4780
-    },
-    {
-      "name": "Business Services & Operations",
-      "count": 3920
-    },
-    {
-      "name": "Construction & Trades",
-      "count": 2870
-    }
-  ],
-  "topNationalities": [
-    {
-      "name": "India",
-      "count": 12453
-    },
-    {
-      "name": "Brazil",
-      "count": 6789
-    },
-    {
-      "name": "Philippines",
-      "count": 5432
-    },
-    {
-      "name": "China",
-      "count": 4321
-    },
-    {
-      "name": "United States",
-      "count": 3987
-    }
-  ]
+  "topIndustries": [],
+  "topNationalities": []
 }
