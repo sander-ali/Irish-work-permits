@@ -24,7 +24,6 @@ export async function GET(request: Request) {
     return defaultData;
   }
 
-  // Default sample data if JSONs missing
   const defaultDashboard = {
     stats: { totalCompanies: 0, totalWorkers: 0, totalCountries: 0, topSector: 'N/A', topSectorCount: 0 },
     yearlyTrends: [],
