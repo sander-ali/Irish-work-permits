@@ -30,7 +30,6 @@ export interface DashboardData {
 const DATA_ROOT = path.join(process.cwd(), 'data');
 const OUTPUT_DIR = path.join(process.cwd(), 'public', 'data');
 
-// List of month names (for sector files and any other files with month columns)
 const MONTH_NAMES = [
   'january', 'february', 'march', 'april', 'may', 'june',
   'july', 'august', 'september', 'october', 'november', 'december'
@@ -52,67 +51,71 @@ function normalizeIndustry(industry: string): string {
   return mapping[industry] || industry || 'Other';
 }
 
-// Sum numeric values from columns that are either:
-// - month names (e.g., "January", "February")
-// - start with "Permits Issued" (company files)
-// - also recognises a "Grand Total" column if no month columns found
-function sumPermitsFromRow(row: any): number {
-  let total = 0;
-  let foundAnyMonth = false;
+// Smart permit extraction: works for company (monthly), sector (monthly), nationality (Issued), county (Issued)
+function extractPermitCount(row: any): number {
+  // 1) If there is an "Issued" column (nationality / county files)
+  if (row['Issued'] !== undefined) {
+    let val = row['Issued'];
+    if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
+    else if (typeof val !== 'number') val = parseFloat(val);
+    if (!isNaN(val)) return val;
+  }
 
+  // 2) Sum month-name columns (e.g., January, February) – for sector files and any other monthly breakdowns
+  let monthTotal = 0;
+  let foundMonth = false;
   for (const key of Object.keys(row)) {
     const lowerKey = key.toLowerCase().trim();
-    // Check if column name is a month name
     if (MONTH_NAMES.includes(lowerKey)) {
       let val = row[key];
       if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
       else if (typeof val !== 'number') val = parseFloat(val);
       if (!isNaN(val)) {
-        total += val;
-        foundAnyMonth = true;
+        monthTotal += val;
+        foundMonth = true;
       }
     }
-    // Check if column name starts with "permits issued"
-    else if (lowerKey.startsWith('permits issued')) {
+  }
+  if (foundMonth) return monthTotal;
+
+  // 3) Sum columns starting with "Permits Issued" – for company files
+  let permitsTotal = 0;
+  let foundPermits = false;
+  for (const key of Object.keys(row)) {
+    if (key.toLowerCase().startsWith('permits issued')) {
       let val = row[key];
       if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
       else if (typeof val !== 'number') val = parseFloat(val);
       if (!isNaN(val)) {
-        total += val;
-        foundAnyMonth = true;
+        permitsTotal += val;
+        foundPermits = true;
       }
     }
   }
+  if (foundPermits) return permitsTotal;
 
-  // If no month/permits columns found, try a "Grand Total" column
-  if (!foundAnyTotal) {
-    const grandTotalKey = Object.keys(row).find(k => 
-      k.toLowerCase() === 'grand total' || k.toLowerCase() === 'permits issued grand total'
-    );
-    if (grandTotalKey) {
-      let val = row[grandTotalKey];
-      if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
-      else if (typeof val !== 'number') val = parseFloat(val);
-      if (!isNaN(val)) total = val;
+  // 4) Fallback: a column named "Permits" or "Count"
+  const simpleKeys = ['permits', 'count', 'number of permits'];
+  for (const sk of simpleKeys) {
+    const val = row[sk];
+    if (val !== undefined) {
+      let num = typeof val === 'string' ? parseFloat(val.replace(/,/g, '')) : parseFloat(val);
+      if (!isNaN(num)) return num;
     }
   }
 
-  // As a last resort, look for a column named "Permits" or "Count"
-  if (total === 0) {
-    const simpleKeys = ['permits', 'count', 'number of permits'];
-    for (const sk of simpleKeys) {
-      const val = row[sk];
-      if (val !== undefined) {
-        let num = typeof val === 'string' ? parseFloat(val.replace(/,/g, '')) : parseFloat(val);
-        if (!isNaN(num)) {
-          total = num;
-          break;
-        }
-      }
-    }
+  // 5) Last resort: look for "Grand Total" column
+  const grandTotalKey = Object.keys(row).find(k => 
+    k.toLowerCase() === 'grand total' || k.toLowerCase() === 'permits issued grand total'
+  );
+  if (grandTotalKey) {
+    let val = row[grandTotalKey];
+    if (typeof val === 'string') val = parseFloat(val.replace(/,/g, ''));
+    else if (typeof val !== 'number') val = parseFloat(val);
+    if (!isNaN(val)) return val;
   }
 
-  return total;
+  return 0;
 }
 
 function readExcelFilesFromDir(dirPath: string): any[] {
@@ -209,20 +212,20 @@ export async function scrapePermitData(): Promise<DashboardData> {
     if (!yearlyCounties[year]) yearlyCounties[year] = {};
 
     for (const row of rows) {
-      // Determine row type by presence of key columns
+      // Detect row type by key columns
       const employerName = row['Employer Name'] || row['Employer'] || row['Company Name'] || row['Company'];
       const economicSector = row['Economic Sectors'] || row['Economic Sector'] || row['Sector'] || row['Industry'];
       const nationality = row['Nationality'] || row['Country'] || row['Citizenship'];
       const county = row['County'] || row['Location'] || row['Region'];
 
-      // Get permit count using the unified summation function
-      let permits = sumPermitsFromRow(row);
+      // Get permit count using unified extraction
+      let permits = extractPermitCount(row);
       if (permits === 0) continue;
 
       // Update yearly total (every row contributes)
       yearlyTotals[year] = (yearlyTotals[year] || 0) + permits;
 
-      // 1) Company data
+      // 1) Company rows
       if (employerName) {
         const industryRaw = row['Sector'] || row['Industry'] || row['Sector Name'] || 'Other';
         const industry = normalizeIndustry(industryRaw);
@@ -248,18 +251,18 @@ export async function scrapePermitData(): Promise<DashboardData> {
 
         yearlyIndustries[year][industry] = (yearlyIndustries[year][industry] || 0) + permits;
       }
-      // 2) Sector data (no employer, but has economic sector)
+      // 2) Sector rows (no employer, but has economic sector)
       else if (economicSector) {
         const industry = normalizeIndustry(economicSector);
         yearlyIndustries[year][industry] = (yearlyIndustries[year][industry] || 0) + permits;
       }
 
-      // 3) Nationality data
+      // 3) Nationality rows
       if (nationality) {
         yearlyNationalities[year][nationality] = (yearlyNationalities[year][nationality] || 0) + permits;
       }
 
-      // 4) County data
+      // 4) County rows
       if (county) {
         yearlyCounties[year][county] = (yearlyCounties[year][county] || 0) + permits;
       }
@@ -267,7 +270,7 @@ export async function scrapePermitData(): Promise<DashboardData> {
   }
 
   if (companyMap.size === 0) {
-    console.warn('⚠️ No company data found in Excel files. Using sample data.');
+    console.warn('⚠️ No company data found. Using sample data.');
     const sample = generateSampleData();
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     fs.writeFileSync(path.join(OUTPUT_DIR, 'dashboard.json'), JSON.stringify(sample, null, 2));
