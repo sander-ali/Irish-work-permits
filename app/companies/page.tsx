@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { Suspense, useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -14,7 +14,8 @@ interface Company {
   lastActiveYear: number;
 }
 
-export default function CompaniesPage() {
+// This component uses useSearchParams and must be wrapped in Suspense
+function CompaniesContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [companies, setCompanies] = useState<Company[]>([]);
@@ -85,33 +86,51 @@ export default function CompaniesPage() {
           </div>
         </div>
 
-        <div className="mb-4 text-sm text-gray-600">Showing {companies.length} of {total.toLocaleString()} companies</div>
+        <div className="mb-4 text-sm text-gray-600">
+          Showing {companies.length} of {total.toLocaleString()} companies
+        </div>
 
         <div className="bg-white rounded-lg shadow overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Employer</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Permits</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">2026 Permits</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Trend</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Active Years</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employer</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Permits</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">2026 Permits</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trend</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active Years</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bg-white divide-y divide-gray-200">
                 {loading ? (
-                  <tr><td colSpan={5} className="px-6 py-12 text-center">Loading...</td></tr>
+                  <tr>
+                    <td colSpan={5} className="px-6 py-12 text-center">
+                      <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                    </td>
+                  </tr>
                 ) : companies.length === 0 ? (
-                  <tr><td colSpan={5} className="px-6 py-12 text-center">No companies found</td></tr>
+                  <tr>
+                    <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
+                      No companies found matching your search.
+                    </td>
+                  </tr>
                 ) : (
-                  companies.map((c, i) => (
-                    <tr key={i} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap"><Link href={`/companies/${encodeURIComponent(c.name)}`} className="text-blue-600 hover:underline">{c.name}</Link></td>
-                      <td className="px-6 py-4">{c.totalPermits.toLocaleString()}</td>
-                      <td className="px-6 py-4">{c.currentYearPermits.toLocaleString()}</td>
-                      <td className="px-6 py-4"><span className={`px-2 py-1 text-xs rounded-full ${getTrendBadge(c.trend)}`}>{c.trend}</span></td>
-                      <td className="px-6 py-4">{c.firstYear} – {c.lastActiveYear}</td>
+                  companies.map((company, i) => (
+                    <tr key={i} className="hover:bg-gray-50 transition">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <Link href={`/companies/${encodeURIComponent(company.name)}`} className="text-blue-600 hover:text-blue-800 font-medium">
+                          {company.name}
+                        </Link>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap font-semibold text-gray-900">{company.totalPermits.toLocaleString()}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-900">{company.currentYearPermits.toLocaleString()}</td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className={`inline-flex px-2 py-1 text-xs rounded-full ${getTrendBadge(company.trend)}`}>
+                          {company.trend}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-600">{company.firstYear} – {company.lastActiveYear}</td>
                     </tr>
                   ))
                 )}
@@ -121,13 +140,38 @@ export default function CompaniesPage() {
         </div>
 
         {totalPages > 1 && (
-          <div className="flex justify-between mt-6">
-            <button onClick={() => setPage(p => Math.max(1, p-1))} disabled={page===1} className="px-4 py-2 border rounded disabled:opacity-50">Previous</button>
-            <span>Page {page} of {totalPages}</span>
-            <button onClick={() => setPage(p => Math.min(totalPages, p+1))} disabled={page===totalPages} className="px-4 py-2 border rounded disabled:opacity-50">Next</button>
+          <div className="flex justify-between items-center mt-6">
+            <button
+              onClick={() => setPage(p => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+            >
+              <ChevronLeft className="w-4 h-4 mr-1" /> Previous
+            </button>
+            <span className="text-sm text-gray-600">Page {page} of {totalPages}</span>
+            <button
+              onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+            >
+              Next <ChevronRight className="w-4 h-4 ml-1" />
+            </button>
           </div>
         )}
       </div>
     </div>
+  );
+}
+
+// Main page component with Suspense boundary
+export default function CompaniesPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <CompaniesContent />
+    </Suspense>
   );
 }
