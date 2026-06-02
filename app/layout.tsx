@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                     IrishWorkPermits
                   </span>
-                  <span className="text-xs text-gray-500 hidden sm:inline">Based on DETE Data</span>
+                  <span className="text-xs text-gray-500 hidden sm:inline">Based on DETE Data by Sunder Ali Khowaja</span>
                 </Link>
               </div>
 
