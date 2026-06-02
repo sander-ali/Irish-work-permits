@@ -1,7 +1,7 @@
 {
   "stats": {
-    "totalCompanies": 16898,
-    "totalWorkers": 125817,
+    "totalCompanies": 15854,
+    "totalWorkers": 110864,
     "totalCountries": 155,
     "topSector": "Q - Health & Social Work Activities",
     "topSectorCount": 3345
@@ -9,30 +9,22 @@
   "yearlyTrends": [
     {
       "year": 2023,
-      "total": 30973
+      "total": 29960
     },
     {
       "year": 2024,
-      "total": 39362
+      "total": 37918
     },
     {
       "year": 2025,
-      "total": 31044
+      "total": 30836
     },
     {
       "year": 2026,
-      "total": 24438
+      "total": 12150
     }
   ],
   "topCompanies": [
-    {
-      "name": "Total",
-      "totalPermits": 12219,
-      "currentYearPermits": 12219,
-      "trend": "increasing",
-      "firstYear": 2026,
-      "lastActiveYear": 2026
-    },
     {
       "name": "Redwood Extended Care Facility Unlimited Company",
       "totalPermits": 137,
@@ -66,19 +58,19 @@
       "lastActiveYear": 2026
     },
     {
-      "name": "Applus Inspection Services Ireland Limited",
-      "totalPermits": 102,
+      "name": "Applus Inspection Services Ireland Ltd",
+      "totalPermits": 421,
       "currentYearPermits": 102,
       "trend": "increasing",
-      "firstYear": 2026,
+      "firstYear": 2023,
       "lastActiveYear": 2026
     },
     {
-      "name": "Resilience Healthcare Limited",
-      "totalPermits": 208,
+      "name": "Resilience Healthcare Ltd",
+      "totalPermits": 381,
       "currentYearPermits": 91,
       "trend": "decreasing",
-      "firstYear": 2025,
+      "firstYear": 2023,
       "lastActiveYear": 2026
     },
     {
@@ -102,6 +94,14 @@
       "totalPermits": 185,
       "currentYearPermits": 74,
       "trend": "stable",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Mowlam Healthcare Services Unlimited Company",
+      "totalPermits": 866,
+      "currentYearPermits": 74,
+      "trend": "decreasing",
       "firstYear": 2023,
       "lastActiveYear": 2026
     }
