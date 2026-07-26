@@ -1,10 +1,10 @@
 {
   "stats": {
-    "totalCompanies": 15854,
-    "totalWorkers": 110864,
-    "totalCountries": 155,
+    "totalCompanies": 16454,
+    "totalWorkers": 117574,
+    "totalCountries": 157,
     "topSector": "Q - Health & Social Work Activities",
-    "topSectorCount": 3345
+    "topSectorCount": 5153
   },
   "yearlyTrends": [
     {
@@ -21,32 +21,80 @@
     },
     {
       "year": 2026,
-      "total": 12150
+      "total": 18860
     }
   ],
   "topCompanies": [
     {
-      "name": "Redwood Extended Care Facility Unlimited Company",
-      "totalPermits": 137,
-      "currentYearPermits": 137,
-      "trend": "increasing",
-      "firstYear": 2026,
-      "lastActiveYear": 2026
-    },
-    {
       "name": "Dawn Meats Ireland UC",
-      "totalPermits": 990,
-      "currentYearPermits": 134,
+      "totalPermits": 1143,
+      "currentYearPermits": 287,
       "trend": "increasing",
       "firstYear": 2023,
       "lastActiveYear": 2026
     },
     {
-      "name": "Costern Unlimited Company",
-      "totalPermits": 319,
-      "currentYearPermits": 108,
+      "name": "Rosderra Irish Meats Group UC",
+      "totalPermits": 550,
+      "currentYearPermits": 228,
+      "trend": "increasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Redwood Extended Care Facility Unlimited Company",
+      "totalPermits": 175,
+      "currentYearPermits": 175,
+      "trend": "increasing",
+      "firstYear": 2026,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Google Ireland Limited",
+      "totalPermits": 1229,
+      "currentYearPermits": 158,
       "trend": "decreasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Costern Unlimited Company",
+      "totalPermits": 361,
+      "currentYearPermits": 150,
+      "trend": "increasing",
       "firstYear": 2024,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Applus Inspection Services Ireland Ltd",
+      "totalPermits": 444,
+      "currentYearPermits": 125,
+      "trend": "increasing",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Mowlam Healthcare Services Unlimited Company",
+      "totalPermits": 910,
+      "currentYearPermits": 118,
+      "trend": "stable",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Resilience Healthcare Ltd",
+      "totalPermits": 407,
+      "currentYearPermits": 117,
+      "trend": "stable",
+      "firstYear": 2023,
+      "lastActiveYear": 2026
+    },
+    {
+      "name": "Cork University Hospital",
+      "totalPermits": 869,
+      "currentYearPermits": 116,
+      "trend": "decreasing",
+      "firstYear": 2023,
       "lastActiveYear": 2026
     },
     {
@@ -56,102 +104,54 @@
       "trend": "increasing",
       "firstYear": 2026,
       "lastActiveYear": 2026
-    },
-    {
-      "name": "Applus Inspection Services Ireland Ltd",
-      "totalPermits": 421,
-      "currentYearPermits": 102,
-      "trend": "increasing",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Resilience Healthcare Ltd",
-      "totalPermits": 381,
-      "currentYearPermits": 91,
-      "trend": "decreasing",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Google Ireland Limited",
-      "totalPermits": 1161,
-      "currentYearPermits": 90,
-      "trend": "decreasing",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "InisCare Limited",
-      "totalPermits": 410,
-      "currentYearPermits": 86,
-      "trend": "increasing",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Circet Networks (Ireland) Limited",
-      "totalPermits": 185,
-      "currentYearPermits": 74,
-      "trend": "stable",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
-    },
-    {
-      "name": "Mowlam Healthcare Services Unlimited Company",
-      "totalPermits": 866,
-      "currentYearPermits": 74,
-      "trend": "decreasing",
-      "firstYear": 2023,
-      "lastActiveYear": 2026
     }
   ],
   "topSectors": [
     {
       "name": "Q - Health & Social Work Activities",
-      "count": 3345
+      "count": 5153
     },
     {
       "name": "I - Accommodation & Food Services Activities",
-      "count": 1341
+      "count": 1969
     },
     {
       "name": "J - Information & Communication Activities",
-      "count": 1295
+      "count": 1916
     },
     {
       "name": "S - Other Service Activities",
-      "count": 1019
-    },
-    {
-      "name": "F - Construction",
-      "count": 760
+      "count": 1565
     },
     {
       "name": "A - Agriculture, Forestry & Fishing",
-      "count": 751
+      "count": 1343
+    },
+    {
+      "name": "F - Construction",
+      "count": 1246
     }
   ],
   "topNationalities": [
     {
       "name": "India",
-      "count": 3728
+      "count": 5518
     },
     {
       "name": "Philippines",
-      "count": 1913
+      "count": 2863
     },
     {
       "name": "Brazil",
-      "count": 1397
+      "count": 2447
     },
     {
       "name": "China",
-      "count": 667
+      "count": 1129
     },
     {
       "name": "Pakistan",
-      "count": 499
+      "count": 945
     }
   ]
 }

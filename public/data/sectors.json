@@ -1,19 +1,19 @@
 [
   {
     "name": "A - Agriculture, Forestry & Fishing",
-    "count": 7676
+    "count": 8268
   },
   {
     "name": "B - Mining & Quarrying",
-    "count": 220
+    "count": 252
   },
   {
     "name": "C - All Other Manufacturing",
-    "count": 3657
+    "count": 3923
   },
   {
     "name": "C - Manufacture of Chemicals & Pharmaceuticals",
-    "count": 2481
+    "count": 2578
   },
   {
     "name": "C - Manufacture of Computers, Electronics & Optica",
@@ -21,15 +21,15 @@
   },
   {
     "name": "C - Manufacture of Food, Drink & Tobacco",
-    "count": 1296
+    "count": 1729
   },
   {
     "name": "C - Manufacture of Medical Devices",
-    "count": 948
+    "count": 974
   },
   {
     "name": "D - Electricity & Gas & Air Conditioning Supply",
-    "count": 1302
+    "count": 1366
   },
   {
     "name": "E - Water Supply - Sewerage Waste Management & Rem",
@@ -37,15 +37,15 @@
   },
   {
     "name": "F - Construction",
-    "count": 5663
+    "count": 6149
   },
   {
     "name": "G - Wholesale & Retail Trade",
-    "count": 1579
+    "count": 1693
   },
   {
     "name": "H - Transport & Storage",
-    "count": 4168
+    "count": 4419
   },
   {
     "name": "I - Accommodation & Food Services activities",
@@ -53,7 +53,7 @@
   },
   {
     "name": "J - Information & Communication Activities",
-    "count": 16722
+    "count": 17343
   },
   {
     "name": "K - Financial & insurance Activities",
@@ -61,7 +61,7 @@
   },
   {
     "name": "L - Real Estate Activities",
-    "count": 92
+    "count": 98
   },
   {
     "name": "M - All other Professional, Scientific & Technical",
@@ -73,19 +73,19 @@
   },
   {
     "name": "N - Administrative & Support Service Activities",
-    "count": 313
+    "count": 336
   },
   {
     "name": "O - Public Administration & Defence",
-    "count": 102
+    "count": 108
   },
   {
     "name": "P - Education",
-    "count": 1251
+    "count": 1310
   },
   {
     "name": "Q - Health & Social Work Activities",
-    "count": 33831
+    "count": 35639
   },
   {
     "name": "R - Arts , Entertainment and Recreation",
@@ -105,38 +105,38 @@
   },
   {
     "name": "C - Manufacture of Computers, Electronics & Optical Equipment",
-    "count": 574
+    "count": 649
   },
   {
     "name": "E - Water Supply - Sewerage Waste Management & Remedial Activities",
-    "count": 112
+    "count": 133
   },
   {
     "name": "I - Accommodation & Food Services Activities",
-    "count": 4840
+    "count": 5468
   },
   {
     "name": "K - Financial & Insurance Activities",
-    "count": 1868
+    "count": 2124
   },
   {
     "name": "M - All other Professional, Scientific & Technical Activities",
-    "count": 911
+    "count": 1082
   },
   {
     "name": "M - Professional, Scientific & Technical Activities of Head Offices, Management Consultancy Services",
-    "count": 1014
+    "count": 1184
   },
   {
     "name": "R - Arts, Entertainment and Recreation",
-    "count": 788
+    "count": 908
   },
   {
     "name": "S - Other Service Activities",
-    "count": 3106
+    "count": 3652
   },
   {
     "name": "T - Domestic - Activities of Households as Employers",
-    "count": 10
+    "count": 11
   }
 ]
