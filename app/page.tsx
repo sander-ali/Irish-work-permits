@@ -156,7 +156,21 @@ export default function HomePage() {
             </div>
             <div className="divide-y divide-gray-200">
               {data?.topCompanies?.slice(0, 5).map((company, i) => (
-               
+                <Link
+                  key={i}
+                  href={'/companies/${encodeURIComponent(company.name)}'}
+                  className="flex justify-between items-center px-6 py-3 hover:bg-gray-50 transition"
+                >
+                  <div>
+                    <p className="font-medium text-gray-900">{company.name}</p>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg font-semibold text-blue-600">
+                      {company.currentYearPermits?.toLocaleString() || 0}
+                    </span>
+                    <ChevronRight className="w-4 h-4 text-gray-400" />
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -170,7 +184,7 @@ export default function HomePage() {
               {data?.topSectors?.slice(0, 5).map((sector, i) => (
                 <Link
                   key={i}
-                  href={`/companies/${encodeURIComponent(company.name)}`}
+                  href={'/sectors?q=${encodeURIComponent(sector.name)}'}
                   className="flex justify-between items-center px-6 py-3 hover:bg-gray-50 transition"
                 >
                   <p className="font-medium text-gray-900">{sector.name}</p>
