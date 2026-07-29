@@ -156,21 +156,23 @@ export default function HomePage() {
             </div>
             <div className="divide-y divide-gray-200">
               {data?.topCompanies?.slice(0, 5).map((company, i) => (
-                <Link
+                <div
                   key={i}
-                  href={'/companies/${encodeURIComponent(company.name)}'}
                   className="flex justify-between items-center px-6 py-3 hover:bg-gray-50 transition"
                 >
-                  <div>
-                    <p className="font-medium text-gray-900">{company.name}</p>
-                  </div>
+                  <Link
+                    href={`/companies/${encodeURIComponent(company.name)}`}
+                    className="font-medium text-gray-900 hover:text-blue-600 hover:underline"
+                  >
+                    {company.name}
+                  </Link>
                   <div className="flex items-center space-x-2">
                     <span className="text-lg font-semibold text-blue-600">
                       {company.currentYearPermits?.toLocaleString() || 0}
                     </span>
                     <ChevronRight className="w-4 h-4 text-gray-400" />
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -182,14 +184,20 @@ export default function HomePage() {
             </div>
             <div className="divide-y divide-gray-200">
               {data?.topSectors?.slice(0, 5).map((sector, i) => (
-                <Link
+                <div
                   key={i}
-                  href={'/sectors?q=${encodeURIComponent(sector.name)}'}
                   className="flex justify-between items-center px-6 py-3 hover:bg-gray-50 transition"
                 >
-                  <p className="font-medium text-gray-900">{sector.name}</p>
-                  <p className="text-lg font-semibold text-green-600">{sector.count?.toLocaleString() || 0}</p>
-                </Link>
+                  <Link
+                    href={`/sectors?q=${encodeURIComponent(sector.name)}`}
+                    className="font-medium text-gray-900 hover:text-blue-600 hover:underline"
+                  >
+                    {sector.name}
+                  </Link>
+                  <p className="text-lg font-semibold text-green-600">
+                    {sector.count?.toLocaleString() || 0}
+                  </p>
+                </div>
               ))}
             </div>
           </div>
@@ -220,7 +228,7 @@ export default function HomePage() {
           <p className="mt-2">
             Developed by{' '}
             <a
-              href="aiverse.ie"
+              href="https://aiverse.ie"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
