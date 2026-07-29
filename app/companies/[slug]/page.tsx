@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, Calendar, Building2, TrendingUp, TrendingDown, Minus } from 'lucide-react';
-import Link from 'next/link';
 
 interface CompanyDetails {
   name: string;
@@ -23,14 +22,31 @@ export default function CompanyPage() {
 
   useEffect(() => {
     const fetchCompany = async () => {
-      const res = await fetch(`/api/permits?type=companies&query=${params.slug}`);
-      const data = await res.json();
-      const found = data.companies.find((c: any) => 
-        encodeURIComponent(c.name.toLowerCase()) === params.slug
+      // params.slug can be string | string[]
+      const rawSlug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+      if (!rawSlug) {
+        setLoading(false);
+        return;
+      }
+
+      // Decode the slug that came from the URL
+      const decodedName = decodeURIComponent(rawSlug);
+
+      // Search the API with the decoded name (better chance of a direct hit)
+      const res = await fetch(
+        `/api/permits?type=companies&query=${encodeURIComponent(decodedName)}`
       );
+      const data = await res.json();
+
+      // Case-insensitive match on the real company name
+      const found = data.companies?.find(
+        (c: any) => c.name.toLowerCase() === decodedName.toLowerCase()
+      );
+
       setCompany(found || null);
       setLoading(false);
     };
+
     fetchCompany();
   }, [params.slug]);
 
@@ -47,7 +63,10 @@ export default function CompanyPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-600">Company not found</p>
-          <button onClick={() => router.back()} className="mt-4 text-blue-600 hover:underline">
+          <button
+            onClick={() => router.back()}
+            className="mt-4 text-blue-600 hover:underline"
+          >
             Go back
           </button>
         </div>
@@ -64,7 +83,10 @@ export default function CompanyPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <button onClick={() => router.back()} className="flex items-center text-gray-600 hover:text-gray-900 mb-6">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center text-gray-600 hover:text-gray-900 mb-6"
+        >
           <ArrowLeft className="w-4 h-4 mr-1" />
           Back to companies
         </button>
@@ -82,7 +104,9 @@ export default function CompanyPage() {
                   <Building2 className="w-4 h-4" />
                   <p className="text-sm">Total Permits Sponsored</p>
                 </div>
-                <p className="text-3xl font-bold text-gray-900">{company.totalPermits.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-gray-900">
+                  {company.totalPermits.toLocaleString()}
+                </p>
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4">
@@ -90,7 +114,9 @@ export default function CompanyPage() {
                   <Calendar className="w-4 h-4" />
                   <p className="text-sm">Sponsorship Activity Period</p>
                 </div>
-                <p className="text-xl font-bold text-gray-900">{company.firstYear} – {company.lastActiveYear}</p>
+                <p className="text-xl font-bold text-gray-900">
+                  {company.firstYear} – {company.lastActiveYear}
+                </p>
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4">
@@ -99,7 +125,9 @@ export default function CompanyPage() {
                   <p className="text-sm">Current Year Sponsorships (2026)</p>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <p className="text-3xl font-bold text-gray-900">{company.currentYearPermits.toLocaleString()}</p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {company.currentYearPermits.toLocaleString()}
+                  </p>
                   {getTrendBadge()}
                 </div>
               </div>
@@ -109,15 +137,13 @@ export default function CompanyPage() {
                   <Calendar className="w-4 h-4" />
                   <p className="text-sm">Trend</p>
                 </div>
-                <p className="text-xl font-semibold capitalize">
-                  {company.trend}
-                </p>
+                <p className="text-xl font-semibold capitalize">{company.trend}</p>
               </div>
             </div>
 
             <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
               <p className="text-sm text-yellow-800">
-                ⚠️ This data shows past sponsorship activity only. It does not indicate current vacancies 
+                ⚠️ This data shows past sponsorship activity only. It does not indicate current vacancies
                 or guarantee future sponsorship. For visa advice, please consult official Irish immigration authorities.
               </p>
             </div>
