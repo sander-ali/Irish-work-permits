@@ -170,7 +170,7 @@ export default function HomePage() {
               {data?.topSectors?.slice(0, 5).map((sector, i) => (
                 <Link
                   key={i}
-                  
+                  href={`/companies/${encodeURIComponent(company.name)}`}
                   className="flex justify-between items-center px-6 py-3 hover:bg-gray-50 transition"
                 >
                   <p className="font-medium text-gray-900">{sector.name}</p>
