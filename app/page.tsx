@@ -158,7 +158,7 @@ export default function HomePage() {
               {data?.topCompanies?.slice(0, 5).map((company, i) => (
                 <Link
                   key={i}
-                  href={`/companies/${encodeURIComponent(company.name)}`}
+                  
                   className="flex justify-between items-center px-6 py-3 hover:bg-gray-50 transition"
                 >
                   <div>
@@ -184,7 +184,7 @@ export default function HomePage() {
               {data?.topSectors?.slice(0, 5).map((sector, i) => (
                 <Link
                   key={i}
-                  href={`/sectors?q=${encodeURIComponent(sector.name)}`}
+                  
                   className="flex justify-between items-center px-6 py-3 hover:bg-gray-50 transition"
                 >
                   <p className="font-medium text-gray-900">{sector.name}</p>
@@ -220,7 +220,7 @@ export default function HomePage() {
           <p className="mt-2">
             Developed by{' '}
             <a
-              href="https://github.com/sunder-alik"
+              href="aiverse.ie"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
