@@ -5,106 +5,106 @@
   },
   {
     "name": "Carlow",
-    "count": 695
+    "count": 741
   },
   {
     "name": "Cavan",
-    "count": 1649
+    "count": 1779
   },
   {
     "name": "Clare",
-    "count": 2091
+    "count": 2226
   },
   {
     "name": "Cork",
-    "count": 10786
+    "count": 11618
   },
   {
     "name": "Donegal",
-    "count": 1574
+    "count": 1695
   },
   {
     "name": "Dublin",
-    "count": 57561
+    "count": 60907
   },
   {
     "name": "Galway",
-    "count": 4480
+    "count": 4840
   },
   {
     "name": "Kerry",
-    "count": 1961
+    "count": 2111
   },
   {
     "name": "Kildare",
-    "count": 6086
+    "count": 6451
   },
   {
     "name": "Kilkenny",
-    "count": 1728
+    "count": 1855
   },
   {
     "name": "Laois",
-    "count": 771
+    "count": 830
   },
   {
     "name": "Leitrim",
-    "count": 286
+    "count": 313
   },
   {
     "name": "Limerick",
-    "count": 5888
+    "count": 6243
   },
   {
     "name": "Longford",
-    "count": 499
+    "count": 521
   },
   {
     "name": "Louth",
-    "count": 2387
+    "count": 2494
   },
   {
     "name": "Mayo",
-    "count": 1470
+    "count": 1585
   },
   {
     "name": "Meath",
-    "count": 4770
+    "count": 5059
   },
   {
     "name": "Monaghan",
-    "count": 1429
+    "count": 1480
   },
   {
     "name": "Offaly",
-    "count": 1523
+    "count": 1581
   },
   {
     "name": "Roscommon",
-    "count": 734
+    "count": 787
   },
   {
     "name": "Sligo",
-    "count": 819
+    "count": 899
   },
   {
     "name": "Tipperary",
-    "count": 2301
+    "count": 2445
   },
   {
     "name": "Waterford",
-    "count": 3280
+    "count": 3404
   },
   {
     "name": "Westmeath",
-    "count": 1598
+    "count": 1717
   },
   {
     "name": "Wexford",
-    "count": 2671
+    "count": 2930
   },
   {
     "name": "Wicklow",
-    "count": 1277
+    "count": 1388
   }
 ]
