@@ -210,7 +210,7 @@ export default function HomePage() {
 
         <div className="border-t border-gray-200 mt-6 pt-6 text-center text-sm text-gray-500">
           <p>
-            Data from Ireland&apos;s Department of Enterprise, Trade and Employment · Updated 17 May 2026.
+            Data from Ireland&apos;s Department of Enterprise, Trade and Employment · Updated 23 November 2026.
           </p>
           <p className="mt-2">
             ⚠️ This website is for informational purposes only. Please do your own research before applying for jobs or visas.
